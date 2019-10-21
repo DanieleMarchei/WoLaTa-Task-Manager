@@ -32,6 +32,7 @@ namespace WoLaTa_Task_Manager.Model
             Id = Guid.NewGuid();
             Label = label;
             Color = Colors.AntiqueWhite;
+            Lanes.Add(new Lane("Lane"));
         }
 
         public void MoveLane(Lane lane, HorizontalDirection direction)
