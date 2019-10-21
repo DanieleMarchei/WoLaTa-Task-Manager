@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using WoLaTa_Task_Manager.Extensions;
 
 namespace WoLaTa_Task_Manager.Model
 {
@@ -25,9 +26,11 @@ namespace WoLaTa_Task_Manager.Model
 
         public TodoTask this[int index] { get => TodoTasks[index]; set => EditTask(TodoTasks[index]); }
 
-        public Lane()
+        public Lane(string label)
         {
             Id = Guid.NewGuid();
+            Label = label;
+            Color = Colors.AliceBlue;
         }
 
         public void EditTask(TodoTask task)
@@ -35,20 +38,10 @@ namespace WoLaTa_Task_Manager.Model
             throw new NotImplementedException();
         }
 
-        private int Constrain(int min, int number, int max)
-        {
-            if (number < min) return min;
-
-            if (number > max) return max;
-
-            return number;
-
-        }
-
         public void MoveTask(TodoTask task, VerticalDirection direction)
         {
             int index = IndexOf(task);
-            int newPosition = Constrain(0, index, Count) + (int)direction;
+            int newPosition = MyMath.Constrain(0, index, Count) + (int)direction;
             Remove(task);
             Insert(newPosition, task);
         }

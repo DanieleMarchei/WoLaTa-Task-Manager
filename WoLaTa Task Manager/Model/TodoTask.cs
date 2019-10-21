@@ -19,5 +19,13 @@ namespace WoLaTa_Task_Manager.Model
         public DateTime Date { get; set; }
         public Color Color { get; set; }
         public int Priority { get; set; }
+
+        public TodoTask(string title)
+        {
+            Id = Guid.NewGuid();
+            Title = title;
+            Date = DateTime.Now;
+            Color = Colors.LightGray;
+        }
     }
 }

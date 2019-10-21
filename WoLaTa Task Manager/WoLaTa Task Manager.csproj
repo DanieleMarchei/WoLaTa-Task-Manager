@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Extensions\MathExtension.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -71,7 +72,9 @@
   <ItemGroup>
     <Compile Include="Model\Lane.cs" />
     <Compile Include="Model\TodoTask.cs" />
+    <Compile Include="Model\HorizontalDirection.cs" />
     <Compile Include="Model\VerticalDirection.cs" />
+    <Compile Include="Model\Workspace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
