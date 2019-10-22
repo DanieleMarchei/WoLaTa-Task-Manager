@@ -2,6 +2,7 @@
 
 // PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,12 +14,12 @@ using WoLaTa_Task_Manager.Extensions;
 
 namespace WoLaTa_Task_Manager.Model
 {
+    [JsonObject(MemberSerialization.Fields)]
     public class Workspace : IList<Lane>
     {
-        public Guid Id { get; private set; }
-        public string Label { get; set; }
-        public Color Color { get; set; }
 
+        public string Label = "";
+        public Color Color = Colors.AntiqueWhite;
         private List<Lane> Lanes = new List<Lane>();
 
         public Lane this[int index] { get => Lanes[index]; set => Lanes[index] = value; }
@@ -29,14 +30,13 @@ namespace WoLaTa_Task_Manager.Model
 
         public Workspace(string label)
         {
-            Id = Guid.NewGuid();
             Label = label;
-            Color = Colors.AntiqueWhite;
             Lanes.Add(new Lane("Lane"));
         }
 
         public void MoveLane(Lane lane, HorizontalDirection direction)
         {
+            Lanes = new List<Lane>();
             int index = IndexOf(lane);
             int newPosition = MyMath.Constrain(0, index, Count) + (int)direction;
             Remove(lane);

@@ -1,7 +1,4 @@
-// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
-
-// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
-
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +8,18 @@ using System.Windows.Media;
 
 namespace WoLaTa_Task_Manager.Model
 {
+    [JsonObject(MemberSerialization.Fields)]
     public class TodoTask
     {
-        public Guid Id { get; private set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public DateTime Date { get; set; }
-        public Color Color { get; set; }
-        public int Priority { get; set; }
+        public string Title;
+        public string Description = "";
+        public DateTime Date = DateTime.Now;
+        public Color Color = Colors.LightGray;
+        public int Priority = 0;
 
         public TodoTask(string title)
         {
-            Id = Guid.NewGuid();
             Title = title;
-            Date = DateTime.Now;
-            Color = Colors.LightGray;
         }
     }
 }

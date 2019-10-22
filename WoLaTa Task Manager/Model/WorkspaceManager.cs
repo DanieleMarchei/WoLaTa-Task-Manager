@@ -30,7 +30,7 @@ namespace WoLaTa_Task_Manager.Model
         {
             using (StreamWriter writer = new StreamWriter(path))
             {
-                string json = JsonConvert.SerializeObject(w);
+                string json = JsonConvert.SerializeObject(w, Formatting.Indented);
                 writer.Write(json);
             }
         }
