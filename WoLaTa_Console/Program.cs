@@ -7,12 +7,12 @@ using WoLaTa_Task_Manager.Model;
 
 namespace WoLaTa_Console
 {
+    
     class Program
     {
         static void Main(string[] args)
         {
-            string savePath = @"C:\Users\Daniele\Desktop\workspace.json";
-            Workspace w = WorkspaceManager.CreateWorkspace("workspaceTest", savePath);
+            Workspace w = new Workspace("workspaceTest");
 
             TodoTask t1 = new TodoTask("Task 1");
             t1.Description = "This is a description of the first Task.";
@@ -24,14 +24,15 @@ namespace WoLaTa_Console
             w[0].Add(t1);
             w[0].Add(t2);
 
-            w.Add(new Lane("Second Lane"));
+            Lane l2 = new Lane("Second Lane");
+            w.Add(l2);
             TodoTask t3 = new TodoTask("Task 3");
             t3.Description = "This task is in another Lane.";
 
             w[1].Add(t3);
-            WorkspaceManager.SaveWorkspace(w, savePath);
 
-            Workspace w_new = WorkspaceManager.LoadWorkspace(savePath);
+            w.MoveLane(l2, HorizontalDirection.LEFT);
+            WorkspaceManager.SaveWorkspace(w, @"C:\Users\Daniele\Desktop\w.json");
         }
     }
 }
