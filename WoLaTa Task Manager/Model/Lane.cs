@@ -10,6 +10,9 @@ using WoLaTa_Task_Manager.Extensions;
 
 namespace WoLaTa_Task_Manager.Model
 {
+    /// <summary>
+    /// Class that represents a Lane
+    /// </summary>
     [JsonObject(MemberSerialization.Fields)]
     public class Lane : IList<TodoTask>
     {
@@ -28,16 +31,26 @@ namespace WoLaTa_Task_Manager.Model
             Label = label;
         }
 
+        /// <summary>
+        /// Replaces a Todo Task with an edited Todo Task
+        /// </summary>
+        /// <param name="task">The Todo Task to be replaced</param>
+        /// <param name="editedTask">The Todo Task that will replace the old one</param>
         public void EditTask(TodoTask task, TodoTask editedTask)
         {
             int index = IndexOf(task);
             TodoTasks[index] = editedTask;
         }
 
+        /// <summary>
+        /// Moves the task up or down the Lane
+        /// </summary>
+        /// <param name="task">The Todo Task to be moved</param>
+        /// <param name="direction">The direction of the movement</param>
         public void MoveTask(TodoTask task, VerticalDirection direction)
         {
             int index = IndexOf(task);
-            int newPosition = MyMath.Constrain(0, index + (int)direction, Count);
+            int newPosition = MathExtension.Constrain(0, index + (int)direction, Count);
             Remove(task);
             Insert(newPosition, task);
         }
@@ -52,43 +65,78 @@ namespace WoLaTa_Task_Manager.Model
             return GetEnumerator();
         }
 
-
+        /// <summary>
+        /// Get the position of the Todo Task in the Lane
+        /// </summary>
+        /// <param name="item">The Todo Task to get the index of</param>
+        /// <returns>The index of the TodoTask</returns>
         public int IndexOf(TodoTask item)
         {
             return TodoTasks.IndexOf(item);
         }
 
+        /// <summary>
+        /// Inserts a Todo Task in a specific index
+        /// </summary>
+        /// <param name="index">The index where the Todo Task will be placed in</param>
+        /// <param name="item">The Todo Task to be inserted</param>
         public void Insert(int index, TodoTask item)
         {
             TodoTasks.Insert(index, item);
 
         }
 
+        /// <summary>
+        /// Removes a Todo task in a given position
+        /// </summary>
+        /// <param name="index">The index to remove the Todo Task at</param>
         public void RemoveAt(int index)
         {
             TodoTasks.RemoveAt(index);
         }
 
+        /// <summary>
+        /// Adds a new Todo Task at the end of the Lane
+        /// </summary>
+        /// <param name="item">The Todo Task to be added</param>
         public void Add(TodoTask item)
         {
             TodoTasks.Add(item);
         }
 
+        /// <summary>
+        /// Removes all the Todo Tasks from the Lane
+        /// </summary>
         public void Clear()
         {
             TodoTasks.Clear();
         }
 
+        /// <summary>
+        /// Determins if a TodoTask is contained in the Lane
+        /// </summary>
+        /// <param name="item">The Todo Task to be searched</param>
+        /// <returns>True or False if the Todo Task is present or not</returns>
         public bool Contains(TodoTask item)
         {
             return TodoTasks.Contains(item);
         }
 
+        /// <summary>
+        /// Copies the Lane content in a TodoTask array starting from a given index
+        /// </summary>
+        /// <param name="array">The TodoTask array</param>
+        /// <param name="arrayIndex">The index to start from</param>
         public void CopyTo(TodoTask[] array, int arrayIndex)
         {
             TodoTasks.CopyTo(array, arrayIndex);
         }
 
+        /// <summary>
+        /// Removes a given TodoTask from the Lane, if present
+        /// </summary>
+        /// <param name="item">The TodoTask to be removed</param>
+        /// <returns>True or False if the Todo Task has been removed or not</returns>
         public bool Remove(TodoTask item)
         {
             return TodoTasks.Remove(item);

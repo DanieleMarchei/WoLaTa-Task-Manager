@@ -7,6 +7,7 @@ using WoLaTa_Task_Manager.Model;
 
 namespace WoLaTa_Console
 {
+    
     class Program
     {
         static void Main(string[] args)

@@ -10,6 +10,9 @@ using WoLaTa_Task_Manager.Extensions;
 
 namespace WoLaTa_Task_Manager.Model
 {
+    /// <summary>
+    /// Class that represents a Workspace
+    /// </summary>
     [JsonObject(MemberSerialization.Fields)]
     public class Workspace : IList<Lane>
     {
@@ -30,14 +33,24 @@ namespace WoLaTa_Task_Manager.Model
             Lanes.Add(new Lane("Lane"));
         }
 
+        /// <summary>
+        /// Moves a Lane left or right
+        /// </summary>
+        /// <param name="lane">The Lane to be moved</param>
+        /// <param name="direction">The direction of the movement</param>
         public void MoveLane(Lane lane, HorizontalDirection direction)
         {
             int index = IndexOf(lane);
-            int newPosition = MyMath.Constrain(0, index + (int)direction, Count);
+            int newPosition = MathExtension.Constrain(0, index + (int)direction, Count);
             Remove(lane);
             Insert(newPosition, lane);
         }
 
+        /// <summary>
+        /// Moves the task up or down the Lane
+        /// </summary>
+        /// <param name="task">The Todo Task to be moved</param>
+        /// <param name="direction">The direction of the movement</param>
         public void MoveTask(TodoTask task, VerticalDirection direction)
         {
             Lane lane = null;
@@ -52,21 +65,38 @@ namespace WoLaTa_Task_Manager.Model
             lane.MoveTask(task, direction);
         }
 
+        /// <summary>
+        /// Adds a new Lane at the end of the Workspace
+        /// </summary>
+        /// <param name="item">The Lane to be added</param>
         public void Add(Lane item)
         {
             Lanes.Add(item);
         }
 
+        /// <summary>
+        /// Removes all the Lanes from the Workspace
+        /// </summary>
         public void Clear()
         {
             Lanes.Clear();
         }
 
+        /// <summary>
+        /// Determins if a Lane is contained in the Workspace
+        /// </summary>
+        /// <param name="item">The lane to be searched</param>
+        /// <returns>True or False if the Lane is present or not</returns>
         public bool Contains(Lane item)
         {
             return Lanes.Contains(item);
         }
 
+        /// <summary>
+        /// Copies the Workspace content in a Lane array starting from a given index
+        /// </summary>
+        /// <param name="array">The Lane array</param>
+        /// <param name="arrayIndex">The index to start from</param>
         public void CopyTo(Lane[] array, int arrayIndex)
         {
             Lanes.CopyTo(array, arrayIndex);
@@ -77,21 +107,40 @@ namespace WoLaTa_Task_Manager.Model
             return Lanes.GetEnumerator();
         }
 
+        /// <summary>
+        /// Get the position of the Lane in the Workspace
+        /// </summary>
+        /// <param name="item">The Lane to get the index of</param>
+        /// <returns>The index of the Lane</returns>
         public int IndexOf(Lane item)
         {
             return Lanes.IndexOf(item);
         }
 
+        /// <summary>
+        /// Inserts a Lane in a specific index
+        /// </summary>
+        /// <param name="index">The index where the Lane will be placed in</param>
+        /// <param name="item">The Lane to be inserted</param>
         public void Insert(int index, Lane item)
         {
             Lanes.Insert(index, item);
         }
 
+        /// <summary>
+        /// Removes a given lane from the Workspace, if present
+        /// </summary>
+        /// <param name="item">The Lane to be removed</param>
+        /// <returns>True or False if the Lane has been removed or not</returns>
         public bool Remove(Lane item)
         {
             return Lanes.Remove(item);
         }
 
+        /// <summary>
+        /// Removes a Lane in a given position
+        /// </summary>
+        /// <param name="index">The index to remove the Lane at</param>
         public void RemoveAt(int index)
         {
             Lanes.RemoveAt(index);

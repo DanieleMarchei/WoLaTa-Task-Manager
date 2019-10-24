@@ -8,6 +8,9 @@ using System.Windows.Media;
 
 namespace WoLaTa_Task_Manager.Model
 {
+    /// <summary>
+    /// Class that represents a Todo Task
+    /// </summary>
     [JsonObject(MemberSerialization.Fields)]
     public class TodoTask
     {
