@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:WoLaTa_Task_Manager"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+        <Label Content="WoLaTa Task Manager" HorizontalAlignment="Center" FontSize="30"></Label>
+    
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
         
-    </Grid>
+        
+            <Button x:Name="CreateBtn" Content="Create" Height="50" Width="100" Margin="40" Click="CreateBtn_Click"></Button>
+            <Button x:Name="LoadBtn" Content="Load" Height="50" Width="100" Margin="40" Click="LoadBtn_Click"></Button>
+        </StackPanel>
+        <!--<Popup x:Name="CreatePopup" IsOpen="True" Placement="Center">
+            <TextBox x:Name="WorkspaceLabel" Text="Enter workspace name..."></TextBox>
+            <Button x:Name="ChooseFolder" Content="Choose folder..." Click="ChooseFolder_Click"></Button>
+        </Popup>-->
+    </StackPanel>
 </Window>
