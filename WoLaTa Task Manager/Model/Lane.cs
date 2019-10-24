@@ -1,7 +1,3 @@
-// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
-
-// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
-
 using Newtonsoft.Json;
 using System;
 using System.Collections;
@@ -25,22 +21,23 @@ namespace WoLaTa_Task_Manager.Model
 
         public bool IsReadOnly => false;
 
-        public TodoTask this[int index] { get => TodoTasks[index]; set => EditTask(TodoTasks[index]); }
+        public TodoTask this[int index] { get => TodoTasks[index]; set => EditTask(TodoTasks[index], value); }
 
         public Lane(string label)
         {
             Label = label;
         }
 
-        public void EditTask(TodoTask task)
+        public void EditTask(TodoTask task, TodoTask editedTask)
         {
-            throw new NotImplementedException();
+            int index = IndexOf(task);
+            TodoTasks[index] = editedTask;
         }
 
         public void MoveTask(TodoTask task, VerticalDirection direction)
         {
             int index = IndexOf(task);
-            int newPosition = MyMath.Constrain(0, index, Count) + (int)direction;
+            int newPosition = MyMath.Constrain(0, index + (int)direction, Count);
             Remove(task);
             Insert(newPosition, task);
         }

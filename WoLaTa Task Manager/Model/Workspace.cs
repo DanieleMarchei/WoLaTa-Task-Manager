@@ -1,7 +1,3 @@
-// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
-
-// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
-
 using Newtonsoft.Json;
 using System;
 using System.Collections;
@@ -36,9 +32,8 @@ namespace WoLaTa_Task_Manager.Model
 
         public void MoveLane(Lane lane, HorizontalDirection direction)
         {
-            Lanes = new List<Lane>();
             int index = IndexOf(lane);
-            int newPosition = MyMath.Constrain(0, index, Count) + (int)direction;
+            int newPosition = MyMath.Constrain(0, index + (int)direction, Count);
             Remove(lane);
             Insert(newPosition, lane);
         }
