@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using WoLaTa_Task_Manager.Extensions;
+using WoLaTa_Task_Manager.Utils;
+
 
 namespace WoLaTa_Task_Manager.Model
 {
@@ -41,9 +43,8 @@ namespace WoLaTa_Task_Manager.Model
         public void MoveLane(Lane lane, HorizontalDirection direction)
         {
             int index = IndexOf(lane);
-            int newPosition = MathExtension.Constrain(0, index + (int)direction, Count);
-            Remove(lane);
-            Insert(newPosition, lane);
+            int newPosition = MathUtilities.Constrain(0, index + (int)direction, Count - 1);
+            Lanes.Swap(index, newPosition);
         }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace WoLaTa_Task_Manager.Model
         {
             Lane lane = null;
             foreach (Lane l in this){
-                if (lane.Contains(task))
+                if (l.Contains(task))
                 {
                     lane = l;
                     break;

@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using WoLaTa_Task_Manager.Extensions;
+using WoLaTa_Task_Manager.Utils;
+
 
 namespace WoLaTa_Task_Manager.Model
 {
@@ -50,9 +52,8 @@ namespace WoLaTa_Task_Manager.Model
         public void MoveTask(TodoTask task, VerticalDirection direction)
         {
             int index = IndexOf(task);
-            int newPosition = MathExtension.Constrain(0, index + (int)direction, Count);
-            Remove(task);
-            Insert(newPosition, task);
+            int newPosition = MathUtilities.Constrain(0, index + (int)direction, Count - 1);
+            TodoTasks.Swap(index, newPosition);
         }
 
         public IEnumerator<TodoTask> GetEnumerator()

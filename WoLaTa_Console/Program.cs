@@ -24,14 +24,14 @@ namespace WoLaTa_Console
             w[0].Add(t1);
             w[0].Add(t2);
 
-            Lane l2 = new Lane("Second Lane");
-            w.Add(l2);
+            w.Add(new Lane("Second Lane"));
             TodoTask t3 = new TodoTask("Task 3");
             t3.Description = "This task is in another Lane.";
 
             w[1].Add(t3);
 
-            w.MoveLane(l2, HorizontalDirection.LEFT);
+            //w.MoveLane(w[1], HorizontalDirection.LEFT);
+            w.MoveTask(w[0][0], VerticalDirection.DOWN);
             WorkspaceManager.SaveWorkspace(w, @"C:\Users\Daniele\Desktop\w.json");
         }
     }

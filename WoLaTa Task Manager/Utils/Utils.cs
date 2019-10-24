@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WoLaTa_Task_Manager.Extensions
+namespace WoLaTa_Task_Manager.Utils
 {
     /// <summary>
     /// Class with useful math functions
     /// </summary>
-    public static class MathExtension
+    public static class MathUtilities
     {
         /// <summary>
         /// Constrains a <i>number</i> to be in between <i>min</i> and <i>max</i> (included)
