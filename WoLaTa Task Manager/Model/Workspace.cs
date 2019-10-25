@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,12 +17,14 @@ namespace WoLaTa_Task_Manager.Model
     /// Class that represents a Workspace
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
-    public class Workspace : IList<Lane>
+    public class Workspace : IList<Lane>, INotifyPropertyChanged
     {
 
         public string Label = "";
         public Color Color = Colors.AntiqueWhite;
         private List<Lane> Lanes = new List<Lane>();
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public Lane this[int index] { get => Lanes[index]; set => Lanes[index] = value; }
 
@@ -135,6 +138,11 @@ namespace WoLaTa_Task_Manager.Model
         /// <returns>True or False if the Lane has been removed or not</returns>
         public bool Remove(Lane item)
         {
+            if (Count == 1)
+            {
+                Lanes[0] = new Lane("Lane");
+                return false;
+            }
             return Lanes.Remove(item);
         }
 
@@ -144,6 +152,11 @@ namespace WoLaTa_Task_Manager.Model
         /// <param name="index">The index to remove the Lane at</param>
         public void RemoveAt(int index)
         {
+            if (Count == 1)
+            {
+                Lanes[0] = new Lane("Lane");
+                return;
+            }
             Lanes.RemoveAt(index);
         }
 

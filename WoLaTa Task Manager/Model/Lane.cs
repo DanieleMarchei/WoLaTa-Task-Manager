@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,12 +17,15 @@ namespace WoLaTa_Task_Manager.Model
     /// Class that represents a Lane
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
-    public class Lane : IList<TodoTask>
+    public class Lane : IList<TodoTask>, INotifyPropertyChanged
     {
         public string Label;
         public Color Color = Colors.AliceBlue;
 
         private List<TodoTask> TodoTasks = new List<TodoTask>();
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public int Count => TodoTasks.Count;
 
         public bool IsReadOnly => false;

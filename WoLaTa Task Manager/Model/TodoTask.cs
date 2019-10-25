@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace WoLaTa_Task_Manager.Model
     /// Class that represents a Todo Task
     /// </summary>
     [JsonObject(MemberSerialization.Fields)]
-    public class TodoTask
+    public class TodoTask : INotifyPropertyChanged
     {
         public string Title;
         public string Description = "";
@@ -20,9 +21,12 @@ namespace WoLaTa_Task_Manager.Model
         public Color Color = Colors.LightGray;
         public int Priority = 0;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public TodoTask(string title)
         {
             Title = title;
         }
+
     }
 }
