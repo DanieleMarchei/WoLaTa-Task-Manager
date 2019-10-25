@@ -1,14 +1,14 @@
-﻿<Window x:Class="WoLaTa_Task_Manager.Windows.WorkspaceWindow"
+﻿<Window x:Class="WoLaTa_Task_Manager.View.WorkspaceView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WoLaTa_Task_Manager.Windows"
+        xmlns:local="clr-namespace:WoLaTa_Task_Manager.View"
         mc:Ignorable="d"
         Title="WorkspaceWindow" Height="450" Width="800">
     <StackPanel Orientation="Vertical">
-        <DockPanel LastChildFill="False">
-            <TextBox Text="Workspace Name" DockPanel.Dock="Left"></TextBox>
+        <DockPanel LastChildFill="False" Loaded="DockPanel_Loaded">
+            <TextBox Text="{Binding Path=Workspace.Label, Mode=TwoWay}" DockPanel.Dock="Left" ></TextBox>
             <Button x:Name="LoadWorkspaceBtn" Content="Load" DockPanel.Dock="Right" Width="80"/>
             <Button x:Name="SaveWorkspaceBtn" Content="Save" DockPanel.Dock="Right" Width="80"/>
             <Button x:Name="NewWorkspaceBtn" Content="New" DockPanel.Dock="Right" Width="80"/>

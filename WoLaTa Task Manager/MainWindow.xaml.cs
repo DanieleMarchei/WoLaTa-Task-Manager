@@ -13,7 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WoLaTa_Task_Manager.Model;
-using WoLaTa_Task_Manager.Windows;
+using WoLaTa_Task_Manager.View;
+using WoLaTa_Task_Manager.ViewModel;
+
+
 
 namespace WoLaTa_Task_Manager
 {
@@ -29,22 +32,22 @@ namespace WoLaTa_Task_Manager
 
         private void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
-            var workspace = WorkspaceManager.CreateWorkspace("Test Workspace", @"C:\tmp\testworkspace.json");
-            WorkspaceWindow workspaceWindow = new WorkspaceWindow(workspace);
-            workspaceWindow.Show();
+            //var workspace = WorkspaceManager.CreateWorkspace("Test Workspacejjj", @"C:\tmp\testworkspace.json");
+            WorkspaceView workspaceView = new WorkspaceView(@"C:\tmp\testworkspace.json");
+            workspaceView.Show();
             this.Close();
         }
 
         private void LoadBtn_Click(object sender, RoutedEventArgs e)
         {
-            var workspace = WorkspaceManager.LoadWorkspace(@"C:\tmp\testworkspace.json");
-            WorkspaceWindow workspaceWindow = new WorkspaceWindow(workspace);
-            workspaceWindow.Show();
-            this.Close();
+        //    var workspace = WorkspaceManager.LoadWorkspace(@"C:\tmp\testworkspace.json");
+        //    WorkspaceWindow workspaceWindow = new WorkspaceWindow(workspace);
+        //    workspaceWindow.Show();
+        //    this.Close();
         }
 
-        private void ChooseFolder_Click(object sender, RoutedEventArgs e)
-        {
-        }
+        //private void ChooseFolder_Click(object sender, RoutedEventArgs e)
+        //{
+        //}
     }
 }

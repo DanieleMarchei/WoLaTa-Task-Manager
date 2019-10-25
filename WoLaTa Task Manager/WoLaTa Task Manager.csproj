@@ -60,9 +60,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Utils\Utils.cs" />
+    <Compile Include="ViewModel\LaneViewModel.cs" />
     <Compile Include="ViewModel\WorkspaceViewModel.cs" />
-    <Compile Include="Windows\WorkspaceWindow.xaml.cs">
-      <DependentUpon>WorkspaceWindow.xaml</DependentUpon>
+    <Compile Include="View\WorkspaceView.cs">
+      <DependentUpon>WorkspaceView.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\TodoTaskControl.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -84,7 +85,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Windows\WorkspaceWindow.xaml">
+    <Page Include="View\WorkspaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
