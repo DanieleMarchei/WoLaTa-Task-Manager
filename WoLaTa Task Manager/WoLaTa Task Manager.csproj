@@ -113,9 +113,16 @@
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="ViewModel\LaneViewModel.cs" />
     <Compile Include="ViewModel\WorkspaceViewModel.cs" />
+    <Compile Include="View\LaneView.xaml.cs">
+      <DependentUpon>LaneView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WorkspaceWindow.xaml.cs">
       <DependentUpon>WorkspaceWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\LaneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

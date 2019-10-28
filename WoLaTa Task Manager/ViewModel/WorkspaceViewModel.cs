@@ -8,19 +8,21 @@ using WoLaTa_Task_Manager.Model;
 
 namespace WoLaTa_Task_Manager.ViewModel
 {
-    public class WorkspaceViewModel : Workspace
+    public class WorkspaceViewModel//: Workspace
     {
+        public Workspace Workspace { get; set; }
         public string Path { get; set; }
         public SolidColorBrush Background { get; set; }
-        public WorkspaceViewModel(string path) : base(WorkspaceManager.LoadWorkspace(path))
+        public WorkspaceViewModel(string path) //: base(WorkspaceManager.LoadWorkspace(path))
         {
+            this.Workspace = WorkspaceManager.LoadWorkspace(path);
             Path = path;
-            Background = new SolidColorBrush(Color);
+            Background = new SolidColorBrush(this.Workspace.Color);
         }
 
         public void SaveWorkspace()
         {
-            WorkspaceManager.SaveWorkspace(new Workspace(this), Path);
+            WorkspaceManager.SaveWorkspace(new Workspace(Workspace), Path);
         }
     }
 }

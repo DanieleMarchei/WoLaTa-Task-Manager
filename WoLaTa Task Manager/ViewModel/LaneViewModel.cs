@@ -10,9 +10,14 @@ namespace WoLaTa_Task_Manager.ViewModel
 {
     public class LaneViewModel
     {
-        public List<TodoTask> TodoTasks { get; set; }
-        public string Label { get; set; }
-        public int Count { get; set; }
+        public Lane Lane { get; set; }
+        //public IList<TodoTask> TodoTasks { get; set; }
+        //public string Label { get; set; }
+        //public int Count { get; set; }
 
+        public LaneViewModel(Lane lane)
+        {
+            this.Lane = lane;
+        }
     }
 }

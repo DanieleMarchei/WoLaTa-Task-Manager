@@ -32,7 +32,7 @@ namespace WoLaTa_Console
 
             //w.MoveLane(w[1], HorizontalDirection.LEFT);
             w.MoveTask(w[0][0], VerticalDirection.DOWN);
-            WorkspaceManager.SaveWorkspace(w, @"C:\Users\Daniele\Desktop\w.json");
+            WorkspaceManager.SaveWorkspace(w, @"C:\tmp\testworkspace.json");
         }
     }
 }
