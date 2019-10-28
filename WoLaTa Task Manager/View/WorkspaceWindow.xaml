@@ -8,13 +8,18 @@
         mc:Ignorable="d"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="WorkspaceWindow" Height="450" Width="800">
-    <Grid>
-        <Grid x:Name="ContainerGrid" Loaded="ContainerGrid_Loaded">
-            <StackPanel x:Name="LanesContainer" Background="{Binding Path = ColorPicker}" HorizontalAlignment="Center" Height="369" Margin="11,40,10,0" VerticalAlignment="Top" Width="771"/>
-            <TextBox x:Name="WorkspaceLabel" HorizontalAlignment="Left" Text="{Binding Path = Label, Mode=TwoWay}" Height="21" Margin="9,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" />
-            <Button Content="Save" HorizontalAlignment="Left" Margin="689,6,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-            <xctk:ColorPicker x:Name="ColorPicker" Margin="340,5,288,393"></xctk:ColorPicker>
+    <Grid MinHeight="450" MinWidth="800" Margin="0,0,-8,-21">
+        <StackPanel x:Name="ContainerGrid" Loaded="ContainerGrid_Loaded" Margin="0,0,10,28">
+            <DockPanel>
+                <TextBox x:Name="WorkspaceLabel" HorizontalAlignment="Left" Text="{Binding Path = Label, Mode = TwoWay}" Height="21" Margin="9,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" />
+                <xctk:ColorPicker x:Name="ColorPicker" SelectedColor="{Binding Path = Color, Mode=TwoWay}" Margin="10, 0, 10, 0" Height="20" Width="100" ></xctk:ColorPicker>
+                <Button Content="Save" HorizontalAlignment="Left" DockPanel.Dock="Right" Width="75" Click="Button_Click"/>
 
-        </Grid>
+            </DockPanel>
+            <DockPanel MinHeight="398" MinWidth="500">
+                <StackPanel x:Name="LanesContainer" VerticalAlignment="Stretch" Background="{Binding ElementName=ColorPicker, Path= SelectedColorText}"  Height="auto" Width="auto"/>
+            </DockPanel>
+
+        </StackPanel>
     </Grid>
 </Window>
