@@ -19,22 +19,57 @@ namespace WoLaTa_Task_Manager.Model
     [JsonObject(MemberSerialization.Fields)]
     public class Lane : IList<TodoTask>, INotifyPropertyChanged
     {
-        public string Label;
-        public Color Color = Colors.AliceBlue;
 
+        private string _label;
+        private Color _color;
         private List<TodoTask> TodoTasks = new List<TodoTask>();
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public string Label
+        {
+            get => _label;
+            set
+            {
+                _label = value;
+                OnPropertyRaised("Label");
+            }
+        }
+        public Color Color
+        {
+            get => _color;
+            set
+            {
+                _color = value;
+                OnPropertyRaised("Color");
+            }
+        }
 
         public int Count => TodoTasks.Count;
 
         public bool IsReadOnly => false;
 
-        public TodoTask this[int index] { get => TodoTasks[index]; set => EditTask(TodoTasks[index], value); }
+        public TodoTask this[int index] 
+        { 
+            get => TodoTasks[index];
+            set
+            {
+                EditTask(TodoTasks[index], value);
+                OnPropertyRaised("TodoTasks");
+            }
+            
+        }
 
         public Lane(string label)
         {
             Label = label;
+            Color = Colors.AliceBlue;
+        }
+        private void OnPropertyRaised(string propertyName)
+        {
+            if (PropertyChanged == null) return;
+
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,30 +13,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WoLaTa_Task_Manager.ViewModel;
+using Xceed.Wpf.Toolkit;
 
-
-namespace WoLaTa_Task_Manager.View
+namespace WoLaTa_Task_Manager.Windows
 {
     /// <summary>
     /// Interaction logic for WorkspaceWindow.xaml
     /// </summary>
-    public partial class WorkspaceView : Window
+    public partial class WorkspaceWindow : Window
     {
-        private String path;
-        private WorkspaceViewModel workspaceViewModel;
-
-        public WorkspaceView(String path)
+        private WorkspaceViewModel wvm;
+        public WorkspaceWindow(string path)
         {
-            this.path = path;
-            workspaceViewModel = new WorkspaceViewModel();
-            workspaceViewModel.LoadWorkspace(path);
+            wvm = new WorkspaceViewModel(path);
 
             InitializeComponent();
         }
 
-        private void DockPanel_Loaded(object sender, RoutedEventArgs e)
+        private void WorkspaceViewControl_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Workspace.DataContext = workspaceViewModel;
+            WorkspaceViewControl.DataContext = wvm;
         }
     }
 }

@@ -20,7 +20,8 @@ namespace WoLaTa_Task_Manager.Model
             using (StreamReader reader = new StreamReader(path))
             {
                 string json = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<Workspace>(json);
+                Workspace w = JsonConvert.DeserializeObject<Workspace>(json);
+                return w;
             }
         }
 

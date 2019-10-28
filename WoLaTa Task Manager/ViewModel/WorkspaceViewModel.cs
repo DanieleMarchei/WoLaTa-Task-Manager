@@ -3,27 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using WoLaTa_Task_Manager.Model;
 
 namespace WoLaTa_Task_Manager.ViewModel
 {
-    public class WorkspaceViewModel
+    public class WorkspaceViewModel : Workspace
     {
-        public Workspace Workspace { get; set; }
-     
-        public void LoadWorkspace(string path)
+        public string Path { get; set; }
+        public SolidColorBrush Background { get; set; }
+        public WorkspaceViewModel(string path) : base(WorkspaceManager.LoadWorkspace(path))
         {
-            Workspace = WorkspaceManager.LoadWorkspace(path);
+            Path = path;
+            Background = new SolidColorBrush(Color);
         }
 
-        public void SaveWorkspace(string path)
+        public void SaveWorkspace()
         {
-            WorkspaceManager.SaveWorkspace(Workspace, path);
-        }
-
-        public void CreateWorkspace(string label, string path)
-        {
-            Workspace = WorkspaceManager.CreateWorkspace(label, path);
+            WorkspaceManager.SaveWorkspace(new Workspace(this), Path);
         }
     }
 }

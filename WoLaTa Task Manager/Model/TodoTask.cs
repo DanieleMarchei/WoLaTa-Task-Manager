@@ -15,17 +15,74 @@ namespace WoLaTa_Task_Manager.Model
     [JsonObject(MemberSerialization.Fields)]
     public class TodoTask : INotifyPropertyChanged
     {
-        public string Title;
-        public string Description = "";
-        public DateTime Date = DateTime.Now;
-        public Color Color = Colors.LightGray;
-        public int Priority = 0;
+        private string _title;
+        private string _description;
+        private DateTime _date;
+        private Color _color;
+        private int _priority;
+
+        public string Title
+        {
+            get => _title;
+            set
+            {
+                _title = value;
+                OnPropertyRaised("Title");
+            }
+        }
+        public string Description 
+        { 
+            get => _description; 
+            set 
+            { 
+                _description = value; 
+                OnPropertyRaised("Description"); 
+            } 
+        }
+        public DateTime Date 
+        { 
+            get => _date; 
+            set 
+            { 
+                _date = value; 
+                OnPropertyRaised("Date"); 
+            } 
+        }
+        public Color Color 
+        { 
+            get => _color; 
+            set 
+            { 
+                _color = value; 
+                OnPropertyRaised("Color"); 
+            } 
+        }
+        public int Priority 
+        { 
+            get => _priority; 
+            set 
+            { 
+                _priority = value; 
+                OnPropertyRaised("Priority"); 
+            } 
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public TodoTask(string title)
         {
             Title = title;
+            Description = "";
+            Date = DateTime.Now;
+            Color = Colors.LightGray;
+            Priority = 0;
+        }
+
+        private void OnPropertyRaised(string propertyName)
+        {
+            if (PropertyChanged == null) return;
+
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }

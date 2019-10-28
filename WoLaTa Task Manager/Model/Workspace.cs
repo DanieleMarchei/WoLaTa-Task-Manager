@@ -19,14 +19,39 @@ namespace WoLaTa_Task_Manager.Model
     [JsonObject(MemberSerialization.Fields)]
     public class Workspace : IList<Lane>, INotifyPropertyChanged
     {
-
-        public string Label = "";
-        public Color Color = Colors.AntiqueWhite;
+        private string _label;
+        private Color _color;
         private List<Lane> Lanes = new List<Lane>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Lane this[int index] { get => Lanes[index]; set => Lanes[index] = value; }
+        public string Label {
+            get => _label;
+            set
+            {
+                _label = value;
+                OnPropertyRaised("Label");
+            }
+        }
+        public Color Color
+        {
+            get => _color;
+            set
+            {
+                _color = value;
+                OnPropertyRaised("Color");
+            }
+        }
+
+
+        public Lane this[int index] 
+        { 
+            get => Lanes[index]; 
+            set { 
+                Lanes[index] = value;
+                OnPropertyRaised("Lanes");
+            } 
+        }
 
         public int Count => Lanes.Count;
 
@@ -35,7 +60,15 @@ namespace WoLaTa_Task_Manager.Model
         public Workspace(string label)
         {
             Label = label;
+            Color = Colors.AntiqueWhite;
             Lanes.Add(new Lane("Lane"));
+        }
+
+        public Workspace(Workspace w)
+        {
+            Label = w.Label;
+            Color = w.Color;
+            Lanes.AddRange(w);
         }
 
         /// <summary>
@@ -48,6 +81,13 @@ namespace WoLaTa_Task_Manager.Model
             int index = IndexOf(lane);
             int newPosition = MathUtilities.Constrain(0, index + (int)direction, Count - 1);
             Lanes.Swap(index, newPosition);
+        }
+
+        private void OnPropertyRaised(string propertyName)
+        {
+            if (propertyName == null || PropertyChanged == null) return;
+
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
         /// <summary>

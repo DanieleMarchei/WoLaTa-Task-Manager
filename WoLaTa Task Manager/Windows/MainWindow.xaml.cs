@@ -15,8 +15,7 @@ using System.Windows.Shapes;
 using WoLaTa_Task_Manager.Model;
 using WoLaTa_Task_Manager.View;
 using WoLaTa_Task_Manager.ViewModel;
-
-
+using WoLaTa_Task_Manager.Windows;
 
 namespace WoLaTa_Task_Manager
 {
@@ -33,8 +32,9 @@ namespace WoLaTa_Task_Manager
         private void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
             //var workspace = WorkspaceManager.CreateWorkspace("Test Workspacejjj", @"C:\tmp\testworkspace.json");
-            WorkspaceView workspaceView = new WorkspaceView(@"C:\tmp\testworkspace.json");
-            workspaceView.Show();
+            WorkspaceWindow workspaceWindow = new WorkspaceWindow(@"C:\tmp\testworkspace.json");
+            workspaceWindow.Show();
+
             this.Close();
         }
 
