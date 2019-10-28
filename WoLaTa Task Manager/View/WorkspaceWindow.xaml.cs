@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using WoLaTa_Task_Manager.ViewModel;
 using Xceed.Wpf.Toolkit;
 
-namespace WoLaTa_Task_Manager.Windows
+namespace WoLaTa_Task_Manager.View
 {
     /// <summary>
     /// Interaction logic for WorkspaceWindow.xaml
@@ -30,9 +30,14 @@ namespace WoLaTa_Task_Manager.Windows
             InitializeComponent();
         }
 
-        private void WorkspaceViewControl_Loaded(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            WorkspaceViewControl.DataContext = wvm;
+            ((WorkspaceViewModel)DataContext).SaveWorkspace();
+        }
+
+        private void ContainerGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataContext = wvm;
         }
     }
 }

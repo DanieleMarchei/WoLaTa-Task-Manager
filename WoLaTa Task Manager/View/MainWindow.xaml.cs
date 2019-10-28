@@ -15,9 +15,9 @@ using System.Windows.Shapes;
 using WoLaTa_Task_Manager.Model;
 using WoLaTa_Task_Manager.View;
 using WoLaTa_Task_Manager.ViewModel;
-using WoLaTa_Task_Manager.Windows;
+using WoLaTa_Task_Manager.View;
 
-namespace WoLaTa_Task_Manager
+namespace WoLaTa_Task_Manager.View
 {
     /// <summary>
     /// Logica di interazione per MainWindow.xaml
