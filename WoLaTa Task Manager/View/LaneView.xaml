@@ -10,10 +10,13 @@
         <ListView ItemsSource="{Binding Lane}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <WrapPanel>
+                    <DockPanel>
+                        <Button DockPanel.Dock="Bottom" x:Name="MoveDownBtn" Content="v"></Button>
+                        <Button DockPanel.Dock="Top" x:Name="MoveUpBtn" Content="^"></Button>
+                        <Button DockPanel.Dock="Right" x:Name="MoveRightBtn" Content="&gt;"></Button>
+                        <Button DockPanel.Dock="Left" x:Name="MoveLeftBtn" Content="&lt;"></Button>
                         <TextBlock Text="{Binding Title}" />
-                        <Button x:Name="MoveDownBtn" Content="Down"></Button> 
-                    </WrapPanel>
+                    </DockPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
