@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WoLaTa_Task_Manager.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" Width="123.5" Margin="5" Padding="5">
-    <Grid x:Name="GridLane" Loaded="Grid_Loaded" Background="{Binding Path=Lane.Color}">
+    <StackPanel x:Name="GridLane" Loaded="Grid_Loaded" Background="{Binding Path=Lane.Color}">
         <ListView ItemsSource="{Binding Lane}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -20,5 +20,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </Grid>
+        <Button  x:Name="NewTask" Content="New Task"></Button>
+    </StackPanel>
 </UserControl>
