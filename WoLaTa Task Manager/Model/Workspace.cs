@@ -16,11 +16,16 @@ namespace WoLaTa_Task_Manager.Model
     /// <summary>
     /// Class that represents a Workspace
     /// </summary>
-    [JsonObject(MemberSerialization.Fields)]
+    [JsonObject(MemberSerialization.OptIn)]
     public class Workspace : IList<Lane>, INotifyPropertyChanged
     {
+        [JsonProperty]
         private string _label;
+
+        [JsonProperty]
         private Color _color;
+        
+        [JsonProperty]
         private List<Lane> Lanes = new List<Lane>();
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -57,6 +62,7 @@ namespace WoLaTa_Task_Manager.Model
 
         public bool IsReadOnly => false;
 
+        [JsonConstructor]
         public Workspace(string label)
         {
             Label = label;

@@ -16,12 +16,17 @@ namespace WoLaTa_Task_Manager.Model
     /// <summary>
     /// Class that represents a Lane
     /// </summary>
-    [JsonObject(MemberSerialization.Fields)]
+    [JsonObject(MemberSerialization.OptIn)]
     public class Lane : IList<TodoTask>, INotifyPropertyChanged
     {
 
+        [JsonProperty]
         private string _label;
+        
+        [JsonProperty]
         private Color _color;
+        
+        [JsonProperty]
         private List<TodoTask> TodoTasks = new List<TodoTask>();
 
         public event PropertyChangedEventHandler PropertyChanged;

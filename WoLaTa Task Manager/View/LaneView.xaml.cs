@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WoLaTa_Task_Manager.Model;
 using WoLaTa_Task_Manager.ViewModel;
 
 namespace WoLaTa_Task_Manager.View
@@ -22,21 +21,23 @@ namespace WoLaTa_Task_Manager.View
     /// </summary>
     public partial class LaneView : UserControl
     {
-        public static readonly DependencyProperty LaneProperty =
-            DependencyProperty.Register("Lane", typeof(Lane), typeof(LaneView));
-                                        //new PropertyMetadata((string)""));
+        //public static readonly DependencyProperty LaneProperty =
+        //    DependencyProperty.Register("Lane", typeof(Lane), typeof(LaneView));
+        //                                //new PropertyMetadata((string)""));
 
-        public Lane Lane
+        //public Lane Lane
+        //{
+        //    get { return (Lane)GetValue(LaneProperty); }
+        //    set { SetValue(LaneProperty, value); }
+        //}
+
+        private LaneViewModel LaneViewModel;
+
+        public LaneView(LaneViewModel lvm)
         {
-            get { return (Lane)GetValue(LaneProperty); }
-            set { SetValue(LaneProperty, value); }
-        }
-
-        //public LaneViewModel LaneViewModel { get; private set; }
-
-        public LaneView()
-        {
+            LaneViewModel = lvm;
             InitializeComponent();
+            
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -45,9 +46,9 @@ namespace WoLaTa_Task_Manager.View
             DataContext = LaneViewModel;
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        //private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
 
-        }
+        //}
     }
 }

@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WoLaTa_Task_Manager.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Loaded="Grid_Loaded">
-        <ListView ItemsSource="{Binding Lane}">
+             d:DesignHeight="450" Width="123.5" Margin="5" Padding="5">
+    <Grid x:Name="GridLane" Loaded="Grid_Loaded" Background="{Binding Path=Lane.Color}">
+        <ListView ItemsSource="{Binding Lane}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>

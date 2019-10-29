@@ -32,7 +32,7 @@ namespace WoLaTa_Task_Manager.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ((WorkspaceViewModel)DataContext).SaveWorkspace();
+            wvm.SaveWorkspace();
         }
 
         private void ContainerGrid_Loaded(object sender, RoutedEventArgs e)

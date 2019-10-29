@@ -10,11 +10,32 @@
         Title="WorkspaceWindow" Height="450" Width="800">
     <Grid>
         <Grid x:Name="ContainerGrid" Loaded="ContainerGrid_Loaded">
-            <TextBox x:Name="WorkspaceLabel" HorizontalAlignment="Left" Text="{Binding Path = Workspace.Label, Mode=TwoWay}" Height="21" Margin="9,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" />
-            <Button Content="Save" HorizontalAlignment="Left" Margin="689,6,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-            <xctk:ColorPicker x:Name="ColorPicker" Margin="340,5,288,393"></xctk:ColorPicker>
-            <StackPanel x:Name="LanesContainer" Background="{Binding Path = ColorPicker}" HorizontalAlignment="Center" Height="369" Margin="11,40,10,0" VerticalAlignment="Top" Width="771">
-                <ListView ItemsSource="{Binding Workspace}">
+            <TextBox x:Name="WorkspaceLabel" 
+                     HorizontalAlignment="Left" 
+                     Text="{Binding Path = Workspace.Label, Mode=TwoWay}" 
+                     Height="21" 
+                     Margin="9,5,0,0" 
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="306" />
+            <Button Content="Save" 
+                    HorizontalAlignment="Left" 
+                    Margin="689,6,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="75" 
+                    Click="Button_Click"/>
+            <xctk:ColorPicker x:Name="ColorPicker"
+                              Margin="340,5,288,393" 
+                              SelectedColor="{Binding Path=Workspace.Color, Mode=TwoWay}" />
+            <StackPanel Orientation="Horizontal" 
+                        x:Name="LanesContainer" 
+                        Background="{Binding ElementName = ColorPicker, Path=SelectedColorText}" 
+                        HorizontalAlignment="Center" 
+                        Height="369" 
+                        Margin="11,40,10,0" 
+                        VerticalAlignment="Top" 
+                        Width="771">
+                <ListView  ItemsSource="{Binding Path = Workspace}">
                     <ListView.ItemTemplate>
                         <DataTemplate >
                             <views:LaneView Lane="{Binding}"></views:LaneView>
