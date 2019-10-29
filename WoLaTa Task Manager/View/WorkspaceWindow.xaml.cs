@@ -46,5 +46,11 @@ namespace WoLaTa_Task_Manager.View
         {
             DataContext = wvm;
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            wvm.AddLane();
+
+        }
     }
 }

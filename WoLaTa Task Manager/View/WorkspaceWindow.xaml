@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="WorkspaceWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="{Binding ElementName = ColorPicker, Path=SelectedColorText}">
         <Grid x:Name="ContainerGrid" Loaded="ContainerGrid_Loaded">
             <TextBox x:Name="WorkspaceLabel" 
                      HorizontalAlignment="Left" 
@@ -25,27 +25,17 @@
             <xctk:ColorPicker x:Name="ColorPicker"
                               Margin="340,5,288,393" 
                               SelectedColor="{Binding Path=Workspace.Color, Mode=TwoWay}" />
-            <StackPanel Orientation="Horizontal" 
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" 
                         x:Name="LanesContainer" 
-                        Background="{Binding ElementName = ColorPicker, Path=SelectedColorText}" 
+                         
                         HorizontalAlignment="Center" 
                         Height="369" 
+                        Width="auto"
                         Margin="11,40,10,0" 
-                        VerticalAlignment="Top" 
-                        Width="771">
-
-                <!--<ListBox Width="400" Margin="10"
-                         ItemsSource="{Binding Path=Workspace}"/>-->
-                <!--ItemsSource="{Binding Path=Workspace.Label}"/>-->
-                    
-
-                <!--<ListView  ItemsSource="{Binding Path = Workspace}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:Name="LaneList">
-                            --><!--<views:LaneView Lane="{Binding}"></views:LaneView>--><!--
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>-->
+                        VerticalAlignment="Top">
+                </StackPanel>
+                <Button Content="New Lane" Width="100" Height="30" VerticalAlignment="Top" Margin="0, 50, 0, 0" Click="Button_Click_1"></Button>
             </StackPanel>
         </Grid>
     </Grid>

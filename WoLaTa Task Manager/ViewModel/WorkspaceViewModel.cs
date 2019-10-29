@@ -22,5 +22,10 @@ namespace WoLaTa_Task_Manager.ViewModel
         {
             WorkspaceManager.SaveWorkspace(new Workspace(Workspace), Path);
         }
+
+        public void AddLane()
+        {
+            Workspace.Add(new Lane("New Lane"));
+        }
     }
 }
