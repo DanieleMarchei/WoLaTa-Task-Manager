@@ -50,7 +50,10 @@ namespace WoLaTa_Task_Manager.View
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             wvm.AddLane();
-
+            int last = wvm.Workspace.Count - 1;
+            LaneView lv = new LaneView(new LaneViewModel(wvm.Workspace[last]));
+            LanesContainer.Children.Add(lv);
+            InitializeComponent();
         }
     }
 }
