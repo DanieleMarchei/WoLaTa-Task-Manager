@@ -3,8 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WoLaTa_Task_Manager.View"
-        xmlns:views ="clr-namespace:WoLaTa_Task_Manager.View"
         mc:Ignorable="d"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="WorkspaceWindow" Height="450" Width="800">
@@ -35,13 +33,19 @@
                         Margin="11,40,10,0" 
                         VerticalAlignment="Top" 
                         Width="771">
-                <ListView  ItemsSource="{Binding Path = Workspace}">
+
+                <!--<ListBox Width="400" Margin="10"
+                         ItemsSource="{Binding Path=Workspace}"/>-->
+                <!--ItemsSource="{Binding Path=Workspace.Label}"/>-->
+                    
+
+                <!--<ListView  ItemsSource="{Binding Path = Workspace}">
                     <ListView.ItemTemplate>
-                        <DataTemplate >
-                            <views:LaneView Lane="{Binding}"></views:LaneView>
+                        <DataTemplate x:Name="LaneList">
+                            --><!--<views:LaneView Lane="{Binding}"></views:LaneView>--><!--
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
+                </ListView>-->
             </StackPanel>
         </Grid>
     </Grid>

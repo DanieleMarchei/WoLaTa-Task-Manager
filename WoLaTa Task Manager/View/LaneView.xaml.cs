@@ -42,7 +42,6 @@ namespace WoLaTa_Task_Manager.View
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            LaneViewModel LaneViewModel = new LaneViewModel(Lane);
             DataContext = LaneViewModel;
         }
 

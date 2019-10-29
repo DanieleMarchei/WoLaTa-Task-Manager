@@ -25,9 +25,18 @@ namespace WoLaTa_Task_Manager.View
         private WorkspaceViewModel wvm;
         public WorkspaceWindow(string path)
         {
-            wvm = new WorkspaceViewModel(path);
 
             InitializeComponent();
+
+            wvm = new WorkspaceViewModel(path);
+
+            for(int i = 0; i < wvm.Workspace.Count; i++)
+            {
+                LaneView lv = new LaneView(new LaneViewModel(wvm.Workspace[i]));
+                LanesContainer.Children.Add(lv);
+            }
+
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
