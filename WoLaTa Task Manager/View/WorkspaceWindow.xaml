@@ -23,12 +23,14 @@
                     Width="75" 
                     Click="Button_Click"/>
             <xctk:ColorPicker x:Name="ColorPicker"
-                              Margin="340,5,288,393" 
-                              SelectedColor="{Binding Path=Workspace.Color, Mode=TwoWay}" />
+                              HorizontalAlignment="Center"
+                              Width="150"
+                              SelectedColor="{Binding Path=Workspace.Color, Mode=TwoWay}"
+                              BorderBrush="Black"
+                              BorderThickness="1" Margin="321,5,321,393"/>
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal" 
                         x:Name="LanesContainer" 
-                         
                         HorizontalAlignment="Center" 
                         Height="369" 
                         Width="auto"

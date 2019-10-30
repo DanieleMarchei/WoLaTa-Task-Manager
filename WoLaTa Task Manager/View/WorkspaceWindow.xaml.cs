@@ -52,7 +52,6 @@ namespace WoLaTa_Task_Manager.View
             wvm.AddLane();
             LaneView lv = new LaneView(new LaneViewModel(wvm.Workspace.Last()));
             LanesContainer.Children.Add(lv);
-            InitializeComponent();
         }
     }
 }

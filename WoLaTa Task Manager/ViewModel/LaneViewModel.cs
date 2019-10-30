@@ -19,5 +19,10 @@ namespace WoLaTa_Task_Manager.ViewModel
         {
             this.Lane = lane;
         }
+
+        internal void AddTask()
+        {
+            Lane.Add(new TodoTask("New Task"));
+        }
     }
 }

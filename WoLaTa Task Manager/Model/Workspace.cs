@@ -87,6 +87,7 @@ namespace WoLaTa_Task_Manager.Model
             int index = IndexOf(lane);
             int newPosition = MathUtilities.Constrain(0, index + (int)direction, Count - 1);
             Lanes.Swap(index, newPosition);
+            OnPropertyRaised("Lanes");
         }
 
         private void OnPropertyRaised(string propertyName)
@@ -113,6 +114,7 @@ namespace WoLaTa_Task_Manager.Model
             }
 
             lane.MoveTask(task, direction);
+            OnPropertyRaised("Lanes");
         }
 
         /// <summary>
@@ -122,6 +124,7 @@ namespace WoLaTa_Task_Manager.Model
         public void Add(Lane item)
         {
             Lanes.Add(item);
+            OnPropertyRaised("Lanes");
         }
 
         /// <summary>
@@ -130,6 +133,7 @@ namespace WoLaTa_Task_Manager.Model
         public void Clear()
         {
             Lanes.Clear();
+            OnPropertyRaised("Lanes");
         }
 
         /// <summary>
@@ -175,6 +179,7 @@ namespace WoLaTa_Task_Manager.Model
         public void Insert(int index, Lane item)
         {
             Lanes.Insert(index, item);
+            OnPropertyRaised("Lanes");
         }
 
         /// <summary>
@@ -189,7 +194,10 @@ namespace WoLaTa_Task_Manager.Model
                 Lanes[0] = new Lane("Lane");
                 return false;
             }
-            return Lanes.Remove(item);
+            bool result =  Lanes.Remove(item);
+            OnPropertyRaised("Lanes");
+
+            return result;
         }
 
         /// <summary>
@@ -204,6 +212,7 @@ namespace WoLaTa_Task_Manager.Model
                 return;
             }
             Lanes.RemoveAt(index);
+            OnPropertyRaised("Lanes");
         }
 
         IEnumerator IEnumerable.GetEnumerator()
