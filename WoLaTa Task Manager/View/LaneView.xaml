@@ -7,7 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" Width="123.5" Margin="5" Padding="5">
     <StackPanel x:Name="GridLane" Loaded="Grid_Loaded" Background="{Binding Path=Lane.Color}">
-        <ListView ItemsSource="{Binding Lane}" >
+        <TextBox Text="{Binding Lane.Label}" />
+        <ListView ItemsSource="{Binding Lane, Mode=TwoWay}" x:Name="ListView" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <DockPanel>
@@ -15,11 +16,14 @@
                         <Button DockPanel.Dock="Top" x:Name="MoveUpBtn" Content="^"></Button>
                         <Button DockPanel.Dock="Right" x:Name="MoveRightBtn" Content="&gt;"></Button>
                         <Button DockPanel.Dock="Left" x:Name="MoveLeftBtn" Content="&lt;"></Button>
-                        <TextBlock Text="{Binding Title}" />
+                        <TextBox Text="{Binding Title, Mode=TwoWay}" Padding="5" />
                     </DockPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button  x:Name="NewTask" Content="New Task"></Button>
+        <StackPanel x:Name="NextTask">
+            
+        </StackPanel>
+        <Button  x:Name="NewTask" Content="New Task" Click="CreateNewTask"></Button>
     </StackPanel>
 </UserControl>

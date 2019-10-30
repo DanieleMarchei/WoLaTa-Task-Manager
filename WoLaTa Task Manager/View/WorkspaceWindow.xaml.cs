@@ -30,9 +30,9 @@ namespace WoLaTa_Task_Manager.View
 
             wvm = new WorkspaceViewModel(path);
 
-            for (int i = 0; i < wvm.Workspace.Count; i++)
+            foreach (var lane in wvm.Workspace) 
             {
-                LaneView lv = new LaneView(new LaneViewModel(wvm.Workspace[i]));
+                LaneView lv = new LaneView(new LaneViewModel(lane));
                 LanesContainer.Children.Add(lv);
             }
         }
@@ -50,8 +50,7 @@ namespace WoLaTa_Task_Manager.View
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             wvm.AddLane();
-            int last = wvm.Workspace.Count - 1;
-            LaneView lv = new LaneView(new LaneViewModel(wvm.Workspace[last]));
+            LaneView lv = new LaneView(new LaneViewModel(wvm.Workspace.Last()));
             LanesContainer.Children.Add(lv);
             InitializeComponent();
         }

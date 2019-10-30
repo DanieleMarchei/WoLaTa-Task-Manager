@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WoLaTa_Task_Manager.ViewModel;
+using WoLaTa_Task_Manager.Model;
+
+
 
 namespace WoLaTa_Task_Manager.View
 {
@@ -21,15 +24,6 @@ namespace WoLaTa_Task_Manager.View
     /// </summary>
     public partial class LaneView : UserControl
     {
-        //public static readonly DependencyProperty LaneProperty =
-        //    DependencyProperty.Register("Lane", typeof(Lane), typeof(LaneView));
-        //                                //new PropertyMetadata((string)""));
-
-        //public Lane Lane
-        //{
-        //    get { return (Lane)GetValue(LaneProperty); }
-        //    set { SetValue(LaneProperty, value); }
-        //}
 
         private LaneViewModel LaneViewModel;
 
@@ -45,9 +39,35 @@ namespace WoLaTa_Task_Manager.View
             DataContext = LaneViewModel;
         }
 
-        //private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
+        private void CreateNewTask(object sender, RoutedEventArgs e)
+        {
+            LaneViewModel.Lane.Add(new TodoTask("New Task"));
+            
+            DockPanel NewTask = new DockPanel();
 
-        //}
+            Button DownButton = new Button();
+            DownButton.Content = "v";
+            Button UpButton = new Button();
+            UpButton.Content = "^";
+            Button LeftButton = new Button();
+            LeftButton.Content = "<";
+            Button RightButton = new Button();
+            RightButton.Content = ">";
+            TextBox TaskText = new TextBox();
+            TaskText.Text = "Test";
+
+            NewTask.Children.Add(DownButton);
+            NewTask.Children.Add(UpButton);
+            NewTask.Children.Add(LeftButton);
+            NewTask.Children.Add(RightButton);
+            NewTask.Children.Add(TaskText);
+
+            DockPanel.SetDock(DownButton, Dock.Bottom);
+            DockPanel.SetDock(UpButton, Dock.Top);
+            DockPanel.SetDock(LeftButton, Dock.Left);
+            DockPanel.SetDock(RightButton, Dock.Right);
+
+            NextTask.Children.Add(NewTask);
+        }
     }
 }
