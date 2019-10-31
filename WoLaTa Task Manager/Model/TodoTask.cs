@@ -82,7 +82,7 @@ namespace WoLaTa_Task_Manager.Model
             Title = title;
             Description = "";
             Date = DateTime.Now;
-            Color = Colors.LightGray;
+            Color = Colors.PaleVioletRed;
             Priority = 0;
         }
 

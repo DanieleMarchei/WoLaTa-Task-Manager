@@ -16,7 +16,11 @@
                         <Button DockPanel.Dock="Top" x:Name="MoveUpBtn" Content="^" Margin="40,0,40,0"></Button>
                         <Button DockPanel.Dock="Right" x:Name="MoveRightBtn" Content="&gt;"></Button>
                         <Button DockPanel.Dock="Left" x:Name="MoveLeftBtn" Content="&lt;"></Button>
-                        <Label Content="{Binding Title}" Background="BlanchedAlmond" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="1"/>
+                        <Label Content="{Binding Title}" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
+                            <Label.Background>
+                                <SolidColorBrush Color="{Binding Color}"></SolidColorBrush>
+                            </Label.Background>
+                        </Label>
                     </DockPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
