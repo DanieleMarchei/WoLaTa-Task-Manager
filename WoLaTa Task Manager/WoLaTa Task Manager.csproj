@@ -112,9 +112,16 @@
     </ApplicationDefinition>
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="ViewModel\LaneViewModel.cs" />
+    <Compile Include="ViewModel\TodoTaskViewModel.cs" />
     <Compile Include="ViewModel\WorkspaceViewModel.cs" />
     <Compile Include="View\LaneView.xaml.cs">
       <DependentUpon>LaneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TodoTaskEditDialog.xaml.cs">
+      <DependentUpon>TodoTaskEditDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TodoTaskView.xaml.cs">
+      <DependentUpon>TodoTaskView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WorkspaceWindow.xaml.cs">
       <DependentUpon>WorkspaceWindow.xaml</DependentUpon>
@@ -136,6 +143,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\TodoTaskEditDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TodoTaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\WorkspaceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

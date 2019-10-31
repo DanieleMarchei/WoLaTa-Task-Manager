@@ -28,9 +28,14 @@ namespace WoLaTa_Task_Manager.View
 
         public LaneView(LaneViewModel lvm)
         {
-            LaneViewModel = lvm;
             InitializeComponent();
-            
+            LaneViewModel = lvm;
+            foreach (var task in LaneViewModel.Lane)
+            {
+                TodoTaskView lv = new TodoTaskView(new TodoTaskViewModel(task));
+                TaskList.Children.Add(lv);
+            }
+
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -41,6 +46,8 @@ namespace WoLaTa_Task_Manager.View
         private void CreateNewTask(object sender, RoutedEventArgs e)
         {
             LaneViewModel.AddTask();
+            TodoTaskView task = new TodoTaskView(new TodoTaskViewModel(LaneViewModel.Lane.Last()));
+            TaskList.Children.Add(task);
             
             //DockPanel NewTask = new DockPanel();
 

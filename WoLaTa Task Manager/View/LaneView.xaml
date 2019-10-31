@@ -6,25 +6,13 @@
              xmlns:local="clr-namespace:WoLaTa_Task_Manager.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" Width="123.5" Margin="5" Padding="5">
-    <StackPanel x:Name="GridLane" Loaded="Grid_Loaded" Background ="{Binding Path=Lane.Color}">
+    <StackPanel x:Name="GridLane" Loaded="Grid_Loaded">
+        <StackPanel.Background>
+            <SolidColorBrush Color="{Binding Path=Lane.Color}"></SolidColorBrush>
+        </StackPanel.Background>
         <TextBox Text="{Binding Lane.Label}" />
-        <ListView ItemsSource="{Binding Lane}" x:Name="TaskList" >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <DockPanel>
-                        <Button DockPanel.Dock="Bottom" x:Name="MoveDownBtn" Content="v" Margin="40,0,40,0"></Button>
-                        <Button DockPanel.Dock="Top" x:Name="MoveUpBtn" Content="^" Margin="40,0,40,0"></Button>
-                        <Button DockPanel.Dock="Right" x:Name="MoveRightBtn" Content="&gt;"></Button>
-                        <Button DockPanel.Dock="Left" x:Name="MoveLeftBtn" Content="&lt;"></Button>
-                        <Label Content="{Binding Title}" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
-                            <Label.Background>
-                                <SolidColorBrush Color="{Binding Color}"></SolidColorBrush>
-                            </Label.Background>
-                        </Label>
-                    </DockPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <StackPanel x:Name="TaskList" >
+        </StackPanel>
         <StackPanel x:Name="NextTask">
             
         </StackPanel>

@@ -74,6 +74,7 @@ namespace WoLaTa_Task_Manager.Model
         {
             if (PropertyChanged == null) return;
 
+            System.Diagnostics.Debug.WriteLine(propertyName);
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
