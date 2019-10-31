@@ -14,7 +14,12 @@
             <Button DockPanel.Dock="Top" x:Name="MoveUpBtn" Content="^" Margin="40,0,40,0"></Button>
             <Button DockPanel.Dock="Right" x:Name="MoveRightBtn" Content="&gt;"></Button>
             <Button DockPanel.Dock="Left" x:Name="MoveLeftBtn" Content="&lt;"></Button>
-            <Label Content="{Binding TodoTask.Title}" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
+            <Label Content="{Binding TodoTask.Title}" 
+                   HorizontalContentAlignment="Center" 
+                   HorizontalAlignment="Stretch" 
+                   BorderBrush="Black" 
+                   BorderThickness="1"
+                   MouseDown="Label_MouseDown">
                 <Label.Background>
                     <SolidColorBrush Color="{Binding TodoTask.Color}"></SolidColorBrush>
                 </Label.Background>

@@ -28,5 +28,12 @@ namespace WoLaTa_Task_Manager.View
             TodoTaskViewModel = todoTaskViewModel;
             DataContext = TodoTaskViewModel;
         }
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TodoTaskEditDialog editTask = new TodoTaskEditDialog();
+            editTask.DataContext = TodoTaskViewModel;
+            editTask.ShowDialog();
+        }
     }
 }
