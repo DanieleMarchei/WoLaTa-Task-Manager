@@ -20,14 +20,21 @@
                     HorizontalAlignment="Left" 
                     Margin="689,6,0,0" 
                     VerticalAlignment="Top" 
-                    Width="75" 
+                    Width="45" 
                     Click="Button_Click"/>
+            <Button Content="Home" 
+                    HorizontalAlignment="Left" 
+                    Margin="737,6,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="45" 
+                    Click="Button_Click_2"/>
             <xctk:ColorPicker x:Name="ColorPicker"
                               HorizontalAlignment="Center"
                               Width="147"
                               SelectedColor="{Binding Path=Workspace.Color, Mode=TwoWay}"
                               BorderBrush="Black"
                               BorderThickness="1" Margin="321,5,324,380"/>
+
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal" 
                         x:Name="LanesContainer" 
@@ -39,6 +46,7 @@
                 </StackPanel>
                 <Button Content="New Lane" Width="100" Height="30" VerticalAlignment="Top" Margin="0, 50, 0, 0" Click="Button_Click_1"></Button>
             </StackPanel>
+            <Separator HorizontalAlignment="Left" Height="13" Margin="9,39,0,0" VerticalAlignment="Top" Width="773"/>
         </Grid>
     </Grid>
 </Window>

@@ -1,3 +1,4 @@
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,23 +31,39 @@ namespace WoLaTa_Task_Manager.View
 
         private void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
-            //var workspace = WorkspaceManager.CreateWorkspace("Test Workspacejjj", @"C:\tmp\testworkspace.json");
-            WorkspaceWindow workspaceWindow = new WorkspaceWindow(@"C:\tmp\testworkspace.json");
-            workspaceWindow.Show();
+            CreateWorkspaceFile open = new CreateWorkspaceFile();
+            if (open.ShowDialog() == true)
+            {
+                string label = open.Label;
+                string path = open.Path;
+                try
+                {
+                    WorkspaceManager.CreateWorkspace(label, path);
 
-            this.Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show($"Permission denied for path '{open.Path}'", "Permission Denied", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                WorkspaceWindow workspaceWindow = new WorkspaceWindow(open.Path);
+                workspaceWindow.Show();
+
+                this.Close();
+            }
         }
 
         private void LoadBtn_Click(object sender, RoutedEventArgs e)
         {
-        //    var workspace = WorkspaceManager.LoadWorkspace(@"C:\tmp\testworkspace.json");
-        //    WorkspaceWindow workspaceWindow = new WorkspaceWindow(workspace);
-        //    workspaceWindow.Show();
-        //    this.Close();
-        }
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter += ".json | *.json";
+            if (open.ShowDialog() == true)
+            {
+                WorkspaceWindow workspaceWindow = new WorkspaceWindow(open.FileName);
+                workspaceWindow.Show();
 
-        //private void ChooseFolder_Click(object sender, RoutedEventArgs e)
-        //{
-        //}
+                this.Close();
+            }
+        }
     }
 }

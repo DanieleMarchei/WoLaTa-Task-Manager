@@ -58,5 +58,12 @@ namespace WoLaTa_Task_Manager.View
             wvm.AddLane();
             UpdateLanes();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
+        }
     }
 }
