@@ -30,12 +30,17 @@ namespace WoLaTa_Task_Manager.View
         {
             InitializeComponent();
             LaneViewModel = lvm;
+            UpdateTasks();
+        }
+
+        private void UpdateTasks()
+        {
+            TaskList.Children.Clear();
             foreach (var task in LaneViewModel.Lane)
             {
-                TodoTaskView lv = new TodoTaskView(new TodoTaskViewModel(task));
-                TaskList.Children.Add(lv);
+                TodoTaskView tv = new TodoTaskView(new TodoTaskViewModel(task), LaneViewModel);
+                TaskList.Children.Add(tv);
             }
-
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -46,34 +51,14 @@ namespace WoLaTa_Task_Manager.View
         private void CreateNewTask(object sender, RoutedEventArgs e)
         {
             LaneViewModel.AddTask();
-            TodoTaskView task = new TodoTaskView(new TodoTaskViewModel(LaneViewModel.Lane.Last()));
-            TaskList.Children.Add(task);
-            
-            //DockPanel NewTask = new DockPanel();
+            UpdateTasks();
+        }
 
-            //Button DownButton = new Button();
-            //DownButton.Content = "v";
-            //Button UpButton = new Button();
-            //UpButton.Content = "^";
-            //Button LeftButton = new Button();
-            //LeftButton.Content = "<";
-            //Button RightButton = new Button();
-            //RightButton.Content = ">";
-            //TextBox TaskText = new TextBox();
-            //TaskText.Text = "Test";
-
-            //NewTask.Children.Add(DownButton);
-            //NewTask.Children.Add(UpButton);
-            //NewTask.Children.Add(LeftButton);
-            //NewTask.Children.Add(RightButton);
-            //NewTask.Children.Add(TaskText);
-
-            //DockPanel.SetDock(DownButton, Dock.Bottom);
-            //DockPanel.SetDock(UpButton, Dock.Top);
-            //DockPanel.SetDock(LeftButton, Dock.Left);
-            //DockPanel.SetDock(RightButton, Dock.Right);
-
-            //NextTask.Children.Add(NewTask);
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            LaneEditDialog laneEdit = new LaneEditDialog();
+            laneEdit.DataContext = LaneViewModel;
+            laneEdit.Show();
         }
     }
 }

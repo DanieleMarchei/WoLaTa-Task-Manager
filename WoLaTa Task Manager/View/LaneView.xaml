@@ -10,12 +10,9 @@
         <StackPanel.Background>
             <SolidColorBrush Color="{Binding Path=Lane.Color}"></SolidColorBrush>
         </StackPanel.Background>
-        <TextBox Text="{Binding Lane.Label}" />
-        <StackPanel x:Name="TaskList" >
-        </StackPanel>
-        <StackPanel x:Name="NextTask">
-            
-        </StackPanel>
-        <Button x:Name="NewTask" Content="+" Click="CreateNewTask" Margin="40,10,40,0"></Button>
+        <Label Content="{Binding Lane.Label}" HorizontalContentAlignment="Center" Height="26" MouseDown="Label_MouseDown" BorderBrush="Black" BorderThickness="1"/>
+        <StackPanel x:Name="TaskList" />
+        <StackPanel x:Name="NextTask"/>
+        <Button x:Name="NewTask" Content="+" Click="CreateNewTask" Margin="40,10,40,0"/>
     </StackPanel>
 </UserControl>

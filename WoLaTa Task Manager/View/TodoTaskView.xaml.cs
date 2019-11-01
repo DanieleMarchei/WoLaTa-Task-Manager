@@ -22,11 +22,14 @@ namespace WoLaTa_Task_Manager.View
     public partial class TodoTaskView : UserControl
     {
         public TodoTaskViewModel TodoTaskViewModel { get; set; }
-        public TodoTaskView(TodoTaskViewModel todoTaskViewModel)
+        private LaneViewModel LaneViewModel;
+
+        public TodoTaskView(TodoTaskViewModel todoTaskViewModel, LaneViewModel laneViewModel)
         {
             InitializeComponent();
             TodoTaskViewModel = todoTaskViewModel;
             DataContext = TodoTaskViewModel;
+            LaneViewModel = laneViewModel;
         }
 
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
@@ -34,6 +37,12 @@ namespace WoLaTa_Task_Manager.View
             TodoTaskEditDialog editTask = new TodoTaskEditDialog();
             editTask.DataContext = TodoTaskViewModel;
             editTask.ShowDialog();
+        }
+
+        private void MoveDownBtn_Click(object sender, RoutedEventArgs e)
+        {
+            LaneViewModel.MoveDown(TodoTaskViewModel);
+
         }
     }
 }

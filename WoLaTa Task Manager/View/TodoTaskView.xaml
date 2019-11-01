@@ -10,7 +10,7 @@
             <DockPanel.Background>
                 <SolidColorBrush Color="{Binding Color}"></SolidColorBrush>
             </DockPanel.Background>
-            <Button DockPanel.Dock="Bottom" x:Name="MoveDownBtn" Content="v" Margin="40,0,40,0"></Button>
+            <Button DockPanel.Dock="Bottom" x:Name="MoveDownBtn" Content="v" Margin="40,0,40,0" Click="MoveDownBtn_Click"></Button>
             <Button DockPanel.Dock="Top" x:Name="MoveUpBtn" Content="^" Margin="40,0,40,0"></Button>
             <Button DockPanel.Dock="Right" x:Name="MoveRightBtn" Content="&gt;"></Button>
             <Button DockPanel.Dock="Left" x:Name="MoveLeftBtn" Content="&lt;"></Button>

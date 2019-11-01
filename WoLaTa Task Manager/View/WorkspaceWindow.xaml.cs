@@ -30,7 +30,13 @@ namespace WoLaTa_Task_Manager.View
 
             wvm = new WorkspaceViewModel(path);
 
-            foreach (var lane in wvm.Workspace) 
+            UpdateLanes();
+        }
+
+        private void UpdateLanes()
+        {
+            LanesContainer.Children.Clear();
+            foreach (var lane in wvm.Workspace)
             {
                 LaneView lv = new LaneView(new LaneViewModel(lane));
                 LanesContainer.Children.Add(lv);
@@ -50,8 +56,7 @@ namespace WoLaTa_Task_Manager.View
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             wvm.AddLane();
-            LaneView lv = new LaneView(new LaneViewModel(wvm.Workspace.Last()));
-            LanesContainer.Children.Add(lv);
+            UpdateLanes();
         }
     }
 }
