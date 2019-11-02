@@ -24,11 +24,17 @@
                    HorizontalContentAlignment="Center" 
                    HorizontalAlignment="Stretch" 
                    BorderBrush="Black" 
-                   BorderThickness="1"
-                   MouseDown="Label_MouseDown">
+                   BorderThickness="1">
                 <Label.Background>
                     <SolidColorBrush Color="{Binding TodoTask.Color}"></SolidColorBrush>
                 </Label.Background>
+                <Label.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Edit" Click="Label_MouseDown"></MenuItem>
+                        <MenuItem x:Name ="Delete" Header="Delete" Click="Delete_Click"></MenuItem>
+                    </ContextMenu>
+                </Label.ContextMenu>
+
             </Label>
         </DockPanel>
     </Grid>

@@ -59,6 +59,12 @@ namespace WoLaTa_Task_Manager.View
             typeof(RoutedEventHandler), // The event type
             typeof(TodoTaskView)); // Event owner
 
+        public static readonly RoutedEvent DeleteTaskEvent = EventManager.RegisterRoutedEvent(
+            "DeleteTask", // Event name 
+            RoutingStrategy.Bubble,
+            typeof(RoutedEventHandler), // The event type
+            typeof(TodoTaskView)); // Event owner
+
         // Expose our events
         public event RoutedEventHandler MoveRight
         {
@@ -82,6 +88,12 @@ namespace WoLaTa_Task_Manager.View
         {
             add { AddHandler(MoveDownEvent, value); }
             remove { RemoveHandler(MoveDownEvent, value); }
+        }
+
+        public event RoutedEventHandler DeleteTask
+        {
+            add { AddHandler(DeleteTaskEvent, value); }
+            remove { RemoveHandler(DeleteTaskEvent, value); }
         }
         #endregion Events
 
@@ -113,5 +125,17 @@ namespace WoLaTa_Task_Manager.View
             RaiseEvent(new RoutedEventArgs(MoveDownEvent, TodoTaskViewModel.TodoTask));
         }
         #endregion Private UI event handlers
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(DeleteTaskEvent, TodoTaskViewModel.TodoTask));
+        }
+
+        private void Label_MouseDown(object sender, RoutedEventArgs e)
+        {
+            TodoTaskEditDialog editTask = new TodoTaskEditDialog();
+            editTask.DataContext = TodoTaskViewModel;
+            editTask.ShowDialog();
+        }
     }
 }

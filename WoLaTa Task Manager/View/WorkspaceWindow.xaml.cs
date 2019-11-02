@@ -89,5 +89,12 @@ namespace WoLaTa_Task_Manager.View
             wvm.MoveTask((TodoTask)e.OriginalSource, VerticalDirection.DOWN);
             UpdateLanes();
         }
+
+        private void HandleDeleteTaskEvent(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            wvm.DeleteTask((TodoTask)e.OriginalSource);
+            UpdateLanes();
+        }
     }
 }

@@ -37,5 +37,12 @@ namespace WoLaTa_Task_Manager.ViewModel
         {
             Workspace.MoveTask(todoTask, direction);
         }
+
+        internal void DeleteTask(TodoTask originalSource)
+        {
+            foreach (Lane l in Workspace)
+                if (l.Contains(originalSource))
+                    l.Remove(originalSource);
+        }
     }
 }
