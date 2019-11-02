@@ -12,8 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WoLaTa_Task_Manager.Model;
 using WoLaTa_Task_Manager.ViewModel;
+using WoLaTa_Task_Manager.Model;
+
+
 
 namespace WoLaTa_Task_Manager.View
 {
@@ -22,23 +24,39 @@ namespace WoLaTa_Task_Manager.View
     /// </summary>
     public partial class LaneView : UserControl
     {
+        private readonly LaneViewModel laneViewModel;
+
         public LaneView(Lane lane)
         {
             InitializeComponent();
-            foreach (TodoTask task in lane)
+            laneViewModel = new LaneViewModel(lane);
+            UpdateTasks();
+            DataContext = laneViewModel;
+        }
+
+        private void UpdateTasks()
+        {
+            TaskList.Children.Clear();
+            foreach (var task in laneViewModel.Lane)
             {
-                TodoTaskView lv = new TodoTaskView(new TodoTaskViewModel(task));
-                TaskList.Children.Add(lv);
+                TodoTaskView tv = new TodoTaskView(new TodoTaskViewModel(task));
+                TaskList.Children.Add(tv);
             }
-            DataContext = new LaneViewModel(lane);
         }
 
         private void CreateNewTask(object sender, RoutedEventArgs e)
         {
-            LaneViewModel lvm = DataContext as LaneViewModel;
-            lvm.AddTask();
-            TodoTaskView task = new TodoTaskView(new TodoTaskViewModel(lvm.Lane.Last()));
-            TaskList.Children.Add(task);
+            laneViewModel.AddTask();
+            UpdateTasks();
+        }
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            LaneEditDialog laneEdit = new LaneEditDialog
+            {
+                DataContext = laneViewModel
+            };
+            laneEdit.Show();
         }
     }
 }

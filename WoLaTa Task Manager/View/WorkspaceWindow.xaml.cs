@@ -23,64 +23,71 @@ namespace WoLaTa_Task_Manager.View
     /// </summary>
     public partial class WorkspaceWindow : Window
     {
+        private readonly WorkspaceViewModel wvm;
+
         public WorkspaceWindow(string path)
         {
             InitializeComponent();
-            
-            WorkspaceViewModel wvm = new WorkspaceViewModel(path);
+            wvm = new WorkspaceViewModel(path);
+            DataContext = wvm;
+            UpdateLanes();
+        }
 
-            foreach (var lane in wvm.Workspace) 
+        private void UpdateLanes()
+        {
+            LanesContainer.Children.Clear();
+            foreach (var lane in wvm.Workspace)
             {
                 LaneView lv = new LaneView(lane);
                 LanesContainer.Children.Add(lv);
             }
-
-            DataContext = wvm;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as WorkspaceViewModel).SaveWorkspace();
+            wvm.SaveWorkspace();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void NewLaneButton_Click(object sender, RoutedEventArgs e)
         {
-            WorkspaceViewModel wvm = DataContext as WorkspaceViewModel;
             wvm.AddLane();
             LaneView lv = new LaneView(wvm.Workspace.Last());
             LanesContainer.Children.Add(lv);
         }
 
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
+        }
+
         private void HandleMoveRightEvent(object sender, RoutedEventArgs e)
         {
-            (DataContext as WorkspaceViewModel).MoveTask(
-                (TodoTask)e.OriginalSource,
-                HorizontalDirection.RIGHT);
             e.Handled = true;
+            wvm.MoveTask((TodoTask)e.OriginalSource, HorizontalDirection.RIGHT);
+            UpdateLanes();
         }
 
         private void HandleMoveLeftEvent(object sender, RoutedEventArgs e)
         {
-            (DataContext as WorkspaceViewModel).MoveTask(
-                (TodoTask)e.OriginalSource,
-                HorizontalDirection.LEFT);
             e.Handled = true;
+            wvm.MoveTask((TodoTask)e.OriginalSource, HorizontalDirection.LEFT);
+            UpdateLanes();
         }
 
         private void HandleMoveUpEvent(object sender, RoutedEventArgs e)
         {
-            (DataContext as WorkspaceViewModel).MoveTask(
-                (TodoTask)e.OriginalSource,
-                VerticalDirection.UP);
             e.Handled = true;
+            wvm.MoveTask((TodoTask)e.OriginalSource, VerticalDirection.UP);
+            UpdateLanes();
         }
 
         private void HandleMoveDownEvent(object sender, RoutedEventArgs e)
         {
-            (DataContext as WorkspaceViewModel).MoveTask(
-                (TodoTask)e.OriginalSource,
-                VerticalDirection.DOWN);
             e.Handled = true;
+            wvm.MoveTask((TodoTask)e.OriginalSource, VerticalDirection.DOWN);
+            UpdateLanes();
         }
     }
 }

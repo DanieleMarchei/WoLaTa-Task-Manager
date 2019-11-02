@@ -12,6 +12,7 @@ namespace WoLaTa_Task_Manager.ViewModel
     {
         public Lane Lane { get; set; }
 
+
         public LaneViewModel(Lane lane)
         {
             this.Lane = lane;
@@ -20,6 +21,16 @@ namespace WoLaTa_Task_Manager.ViewModel
         internal void AddTask()
         {
             Lane.Add(new TodoTask("New Task"));
+        }
+
+        public void SortTasksByPriority()
+        {
+            Lane.OrderBy(t => t.Priority);
+        }
+
+        public void SortTasksByTitle()
+        {
+            Lane.OrderBy(t => t.Title);
         }
     }
 }
