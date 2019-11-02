@@ -117,6 +117,16 @@ namespace WoLaTa_Task_Manager.Model
             OnPropertyRaised("Lanes");
         }
 
+        public void MoveTask(TodoTask task, HorizontalDirection direction)
+        {
+            int index = Lanes.FindIndex(l => l.Contains(task));
+            int newPosition = MathUtilities.Constrain(0, index + (int)direction, Count - 1);
+
+            Lanes.ElementAt(index).Remove(task);
+            Lanes.ElementAt(newPosition).Add(task);
+            OnPropertyRaised("Lanes");
+        }
+
         /// <summary>
         /// Adds a new Lane at the end of the Workspace
         /// </summary>

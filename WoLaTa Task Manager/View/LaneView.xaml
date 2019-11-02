@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WoLaTa_Task_Manager.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" Width="123.5" Margin="5" Padding="5">
-    <StackPanel x:Name="GridLane" Loaded="Grid_Loaded">
+    <StackPanel x:Name="GridLane">
         <StackPanel.Background>
             <SolidColorBrush Color="{Binding Path=Lane.Color}"></SolidColorBrush>
         </StackPanel.Background>

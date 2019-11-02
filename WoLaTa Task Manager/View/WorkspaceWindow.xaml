@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:WoLaTa_Task_Manager.View"
+        local:TodoTaskView.MoveLeft="HandleMoveLeftEvent"
+        local:TodoTaskView.MoveRight="HandleMoveRightEvent"
+        local:TodoTaskView.MoveUp="HandleMoveUpEvent"
+        local:TodoTaskView.MoveDown="HandleMoveDownEvent"
         Title="WorkspaceWindow" Height="450" Width="800">
     <Grid Background="{Binding ElementName = ColorPicker, Path=SelectedColorText}">
-        <Grid x:Name="ContainerGrid" Loaded="ContainerGrid_Loaded">
+        <Grid x:Name="ContainerGrid">
             <TextBox x:Name="WorkspaceLabel" 
                      HorizontalAlignment="Left" 
                      Text="{Binding Path = Workspace.Label, Mode=TwoWay}" 
