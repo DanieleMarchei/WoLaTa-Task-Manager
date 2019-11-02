@@ -122,8 +122,11 @@ namespace WoLaTa_Task_Manager.Model
             int index = Lanes.FindIndex(l => l.Contains(task));
             int newPosition = MathUtilities.Constrain(0, index + (int)direction, Count - 1);
 
+            int newTaskIndex = Math.Min(Lanes.ElementAt(index).IndexOf(task), Math.Max(Lanes.ElementAt(newPosition).Count,0));
+            newTaskIndex = MathUtilities.Constrain(0, newTaskIndex, Lanes.ElementAt(newPosition).Count);
             Lanes.ElementAt(index).Remove(task);
-            Lanes.ElementAt(newPosition).Add(task);
+
+            Lanes.ElementAt(newPosition).Insert(newTaskIndex, task);
             OnPropertyRaised("Lanes");
         }
 
