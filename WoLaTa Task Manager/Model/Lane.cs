@@ -16,12 +16,17 @@ namespace WoLaTa_Task_Manager.Model
     /// <summary>
     /// Class that represents a Lane
     /// </summary>
-    [JsonObject(MemberSerialization.Fields)]
+    [JsonObject(MemberSerialization.OptIn)]
     public class Lane : IList<TodoTask>, INotifyPropertyChanged
     {
 
+        [JsonProperty]
         private string _label;
+        
+        [JsonProperty]
         private Color _color;
+        
+        [JsonProperty]
         private List<TodoTask> TodoTasks = new List<TodoTask>();
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -69,6 +74,7 @@ namespace WoLaTa_Task_Manager.Model
         {
             if (PropertyChanged == null) return;
 
+            System.Diagnostics.Debug.WriteLine(propertyName);
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
@@ -81,6 +87,7 @@ namespace WoLaTa_Task_Manager.Model
         {
             int index = IndexOf(task);
             TodoTasks[index] = editedTask;
+            OnPropertyRaised("TodoTasks");
         }
 
         /// <summary>
@@ -93,6 +100,7 @@ namespace WoLaTa_Task_Manager.Model
             int index = IndexOf(task);
             int newPosition = MathUtilities.Constrain(0, index + (int)direction, Count - 1);
             TodoTasks.Swap(index, newPosition);
+            OnPropertyRaised("TodoTasks");
         }
 
         public IEnumerator<TodoTask> GetEnumerator()
@@ -123,7 +131,7 @@ namespace WoLaTa_Task_Manager.Model
         public void Insert(int index, TodoTask item)
         {
             TodoTasks.Insert(index, item);
-
+            OnPropertyRaised("TodoTasks");
         }
 
         /// <summary>
@@ -133,6 +141,7 @@ namespace WoLaTa_Task_Manager.Model
         public void RemoveAt(int index)
         {
             TodoTasks.RemoveAt(index);
+            OnPropertyRaised("TodoTasks");
         }
 
         /// <summary>
@@ -142,6 +151,7 @@ namespace WoLaTa_Task_Manager.Model
         public void Add(TodoTask item)
         {
             TodoTasks.Add(item);
+            OnPropertyRaised("TodoTasks");
         }
 
         /// <summary>
@@ -150,6 +160,7 @@ namespace WoLaTa_Task_Manager.Model
         public void Clear()
         {
             TodoTasks.Clear();
+            OnPropertyRaised("TodoTasks");
         }
 
         /// <summary>
@@ -179,7 +190,9 @@ namespace WoLaTa_Task_Manager.Model
         /// <returns>True or False if the Todo Task has been removed or not</returns>
         public bool Remove(TodoTask item)
         {
-            return TodoTasks.Remove(item);
+            bool result = TodoTasks.Remove(item);
+            OnPropertyRaised("TodoTasks");
+            return result;
         }
     }
 }

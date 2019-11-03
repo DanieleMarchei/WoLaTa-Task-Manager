@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WoLaTa_Task_Manager.Model;
 using WoLaTa_Task_Manager.ViewModel;
 using Xceed.Wpf.Toolkit;
 
@@ -22,22 +23,78 @@ namespace WoLaTa_Task_Manager.View
     /// </summary>
     public partial class WorkspaceWindow : Window
     {
-        private WorkspaceViewModel wvm;
+        private readonly WorkspaceViewModel wvm;
+
         public WorkspaceWindow(string path)
         {
-            wvm = new WorkspaceViewModel(path);
-
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ((WorkspaceViewModel)DataContext).SaveWorkspace();
-        }
-
-        private void ContainerGrid_Loaded(object sender, RoutedEventArgs e)
-        {
+            wvm = new WorkspaceViewModel(path);
             DataContext = wvm;
+            UpdateLanes();
+        }
+
+        private void UpdateLanes()
+        {
+            LanesContainer.Children.Clear();
+            foreach (var lane in wvm.Workspace)
+            {
+                LaneView lv = new LaneView(lane);
+                LanesContainer.Children.Add(lv);
+            }
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            wvm.SaveWorkspace();
+        }
+
+        private void NewLaneButton_Click(object sender, RoutedEventArgs e)
+        {
+            wvm.AddLane();
+            LaneView lv = new LaneView(wvm.Workspace.Last());
+            LanesContainer.Children.Add(lv);
+        }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
+        }
+
+        private void HandleMoveRightEvent(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            wvm.MoveTask((TodoTask)e.OriginalSource, HorizontalDirection.RIGHT);
+            UpdateLanes();
+        }
+
+        private void HandleMoveLeftEvent(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            wvm.MoveTask((TodoTask)e.OriginalSource, HorizontalDirection.LEFT);
+            UpdateLanes();
+        }
+
+        private void HandleMoveUpEvent(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            wvm.MoveTask((TodoTask)e.OriginalSource, VerticalDirection.UP);
+            UpdateLanes();
+        }
+
+        private void HandleMoveDownEvent(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            wvm.MoveTask((TodoTask)e.OriginalSource, VerticalDirection.DOWN);
+            UpdateLanes();
+        }
+
+        private void HandleDeleteTaskEvent(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            wvm.DeleteTask((TodoTask)e.OriginalSource);
+            UpdateLanes();
         }
     }
 }

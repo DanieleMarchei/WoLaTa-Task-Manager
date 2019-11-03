@@ -16,11 +16,16 @@ namespace WoLaTa_Task_Manager.Model
     /// <summary>
     /// Class that represents a Workspace
     /// </summary>
-    [JsonObject(MemberSerialization.Fields)]
+    [JsonObject(MemberSerialization.OptIn)]
     public class Workspace : IList<Lane>, INotifyPropertyChanged
     {
+        [JsonProperty]
         private string _label;
+
+        [JsonProperty]
         private Color _color;
+        
+        [JsonProperty]
         private List<Lane> Lanes = new List<Lane>();
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -57,18 +62,12 @@ namespace WoLaTa_Task_Manager.Model
 
         public bool IsReadOnly => false;
 
+        [JsonConstructor]
         public Workspace(string label)
         {
             Label = label;
             Color = Colors.AntiqueWhite;
             Lanes.Add(new Lane("Lane"));
-        }
-
-        public Workspace(Workspace w)
-        {
-            Label = w.Label;
-            Color = w.Color;
-            Lanes.AddRange(w);
         }
 
         /// <summary>
@@ -81,6 +80,7 @@ namespace WoLaTa_Task_Manager.Model
             int index = IndexOf(lane);
             int newPosition = MathUtilities.Constrain(0, index + (int)direction, Count - 1);
             Lanes.Swap(index, newPosition);
+            OnPropertyRaised("Lanes");
         }
 
         private void OnPropertyRaised(string propertyName)
@@ -107,6 +107,20 @@ namespace WoLaTa_Task_Manager.Model
             }
 
             lane.MoveTask(task, direction);
+            OnPropertyRaised("Lanes");
+        }
+
+        public void MoveTask(TodoTask task, HorizontalDirection direction)
+        {
+            int index = Lanes.FindIndex(l => l.Contains(task));
+            int newPosition = MathUtilities.Constrain(0, index + (int)direction, Count - 1);
+
+            int newTaskIndex = Math.Min(Lanes.ElementAt(index).IndexOf(task), Math.Max(Lanes.ElementAt(newPosition).Count,0));
+            newTaskIndex = MathUtilities.Constrain(0, newTaskIndex, Lanes.ElementAt(newPosition).Count);
+            Lanes.ElementAt(index).Remove(task);
+
+            Lanes.ElementAt(newPosition).Insert(newTaskIndex, task);
+            OnPropertyRaised("Lanes");
         }
 
         /// <summary>
@@ -116,6 +130,7 @@ namespace WoLaTa_Task_Manager.Model
         public void Add(Lane item)
         {
             Lanes.Add(item);
+            OnPropertyRaised("Lanes");
         }
 
         /// <summary>
@@ -124,6 +139,7 @@ namespace WoLaTa_Task_Manager.Model
         public void Clear()
         {
             Lanes.Clear();
+            OnPropertyRaised("Lanes");
         }
 
         /// <summary>
@@ -169,6 +185,7 @@ namespace WoLaTa_Task_Manager.Model
         public void Insert(int index, Lane item)
         {
             Lanes.Insert(index, item);
+            OnPropertyRaised("Lanes");
         }
 
         /// <summary>
@@ -183,7 +200,10 @@ namespace WoLaTa_Task_Manager.Model
                 Lanes[0] = new Lane("Lane");
                 return false;
             }
-            return Lanes.Remove(item);
+            bool result =  Lanes.Remove(item);
+            OnPropertyRaised("Lanes");
+
+            return result;
         }
 
         /// <summary>
@@ -198,6 +218,7 @@ namespace WoLaTa_Task_Manager.Model
                 return;
             }
             Lanes.RemoveAt(index);
+            OnPropertyRaised("Lanes");
         }
 
         IEnumerator IEnumerable.GetEnumerator()

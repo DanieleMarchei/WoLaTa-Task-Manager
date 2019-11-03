@@ -10,9 +10,27 @@ namespace WoLaTa_Task_Manager.ViewModel
 {
     public class LaneViewModel
     {
-        public List<TodoTask> TodoTasks { get; set; }
-        public string Label { get; set; }
-        public int Count { get; set; }
+        public Lane Lane { get; set; }
 
+
+        public LaneViewModel(Lane lane)
+        {
+            this.Lane = lane;
+        }
+
+        internal void AddTask()
+        {
+            Lane.Add(new TodoTask("New Task"));
+        }
+
+        public void SortTasksByPriority()
+        {
+            Lane.OrderBy(t => t.Priority);
+        }
+
+        public void SortTasksByTitle()
+        {
+            Lane.OrderBy(t => t.Title);
+        }
     }
 }

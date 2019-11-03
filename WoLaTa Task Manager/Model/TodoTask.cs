@@ -12,13 +12,22 @@ namespace WoLaTa_Task_Manager.Model
     /// <summary>
     /// Class that represents a Todo Task
     /// </summary>
-    [JsonObject(MemberSerialization.Fields)]
+    [JsonObject(MemberSerialization.OptIn)]
     public class TodoTask : INotifyPropertyChanged
     {
+        [JsonProperty]
         private string _title;
+     
+        [JsonProperty]
         private string _description;
+        
+        [JsonProperty]
         private DateTime _date;
+        
+        [JsonProperty]
         private Color _color;
+        
+        [JsonProperty]
         private int _priority;
 
         public string Title
@@ -68,13 +77,12 @@ namespace WoLaTa_Task_Manager.Model
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         public TodoTask(string title)
         {
             Title = title;
             Description = "";
             Date = DateTime.Now;
-            Color = Colors.LightGray;
+            Color = Colors.PaleVioletRed;
             Priority = 0;
         }
 
