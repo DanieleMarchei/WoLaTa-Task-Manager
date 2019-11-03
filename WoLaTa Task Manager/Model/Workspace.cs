@@ -70,13 +70,6 @@ namespace WoLaTa_Task_Manager.Model
             Lanes.Add(new Lane("Lane"));
         }
 
-        public Workspace(Workspace w)
-        {
-            Label = w.Label;
-            Color = w.Color;
-            Lanes.AddRange(w);
-        }
-
         /// <summary>
         /// Moves a Lane left or right
         /// </summary>

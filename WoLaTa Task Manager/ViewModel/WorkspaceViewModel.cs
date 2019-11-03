@@ -20,7 +20,7 @@ namespace WoLaTa_Task_Manager.ViewModel
 
         public void SaveWorkspace()
         {
-            WorkspaceManager.SaveWorkspace(new Workspace(Workspace), Path);
+            WorkspaceManager.SaveWorkspace(Workspace, Path);
         }
 
         public void AddLane()
