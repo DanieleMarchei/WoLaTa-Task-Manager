@@ -11,7 +11,7 @@
         local:TodoTaskView.MoveUp="HandleMoveUpEvent"
         local:TodoTaskView.MoveDown="HandleMoveDownEvent"
         local:TodoTaskView.DeleteTask="HandleDeleteTaskEvent"
-        Title="WorkspaceWindow" Height="450" Width="800">
+        Title="WoLaTa Task Manager" Height="450" Width="800">
     <Grid Background="{Binding ElementName = ColorPicker, Path=SelectedColorText}">
         <Grid x:Name="ContainerGrid">
             <TextBox x:Name="WorkspaceLabel" 

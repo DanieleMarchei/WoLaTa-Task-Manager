@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WoLaTa_Task_Manager.View"
         mc:Ignorable="d"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        Title="TodoTaskEditDialog" Height="312.27" Width="417.094"
+        Title="Edit Task" Height="312.27" Width="417.094"
         ResizeMode="NoResize">
     <Grid>
         <Label Content="Title" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
