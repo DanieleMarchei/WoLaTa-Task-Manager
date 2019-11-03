@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WoLaTa_Task_Manager.View"
         mc:Ignorable="d"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        Title="LaneEditDialog" Height="131.564" Width="319.414" ResizeMode="NoResize">
+        Title="Edit Lane" Height="131.564" Width="319.414" ResizeMode="NoResize">
     <Grid>
         <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="53,10,0,0" TextWrapping="Wrap" Text="{Binding Lane.Label}" VerticalAlignment="Top" Width="242"/>

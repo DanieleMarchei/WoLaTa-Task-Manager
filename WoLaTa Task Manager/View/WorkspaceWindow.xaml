@@ -11,14 +11,50 @@
         local:TodoTaskView.MoveUp="HandleMoveUpEvent"
         local:TodoTaskView.MoveDown="HandleMoveDownEvent"
         local:TodoTaskView.DeleteTask="HandleDeleteTaskEvent"
-        Title="WorkspaceWindow" Height="450" Width="800">
-    <Grid>
-        <Grid x:Name="ContainerGrid" Loaded="ContainerGrid_Loaded">
-            <StackPanel x:Name="LanesContainer" Background="{Binding Path = ColorPicker}" HorizontalAlignment="Center" Height="369" Margin="11,40,10,0" VerticalAlignment="Top" Width="771"/>
-            <TextBox x:Name="WorkspaceLabel" HorizontalAlignment="Left" Text="{Binding Path = Label, Mode=TwoWay}" Height="21" Margin="9,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306" />
-            <Button Content="Save" HorizontalAlignment="Left" Margin="689,6,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-            <xctk:ColorPicker x:Name="ColorPicker" Margin="340,5,288,393"></xctk:ColorPicker>
+        Title="WoLaTa Task Manager" Height="450" Width="800">
+    <Grid Background="{Binding ElementName = ColorPicker, Path=SelectedColorText}">
+        <Grid x:Name="ContainerGrid">
+            <TextBox x:Name="WorkspaceLabel" 
+                     HorizontalAlignment="Left" 
+                     Text="{Binding Path = Workspace.Label, Mode=TwoWay}" 
+                     Height="21" 
+                     Margin="9,5,0,0" 
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top" 
+                     Width="306" />
+            <Button Content="Save" 
+                    HorizontalAlignment="Left" 
+                    Margin="689,6,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="45" 
+                    Click="SaveButton_Click"/>
+            <Button Content="Home" 
+                    HorizontalAlignment="Left" 
+                    Margin="737,6,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="45" 
+                    Click="HomeButton_Click"/>
+            <xctk:ColorPicker x:Name="ColorPicker"
+                              HorizontalAlignment="Center"
+                              Width="147"
+                              SelectedColor="{Binding Path=Workspace.Color, Mode=TwoWay}"
+                              BorderBrush="Black"
+                              BorderThickness="1" Margin="321,5,324,380"/>
 
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" 
+                        x:Name="LanesContainer" 
+                        HorizontalAlignment="Center" 
+                        Height="369" 
+                        Width="auto"
+                        Margin="11,40,10,0" 
+                        VerticalAlignment="Top">
+                </StackPanel>
+                <Button Content="New Lane" Width="100" Height="30" VerticalAlignment="Top"
+                        Margin="0, 50, 0, 0" Click="NewLaneButton_Click"></Button>
+            </StackPanel>
+            <Separator HorizontalAlignment="Left" Height="13" Margin="9,39,0,0"
+                       VerticalAlignment="Top" Width="773"/>
         </Grid>
     </Grid>
 </Window>

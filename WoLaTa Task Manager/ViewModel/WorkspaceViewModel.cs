@@ -12,8 +12,7 @@ namespace WoLaTa_Task_Manager.ViewModel
     {
         public Workspace Workspace { get; set; }
         public string Path { get; set; }
-        public SolidColorBrush Background { get; set; }
-        public WorkspaceViewModel(string path) : base(WorkspaceManager.LoadWorkspace(path))
+        public WorkspaceViewModel(string path)
         {
             this.Workspace = WorkspaceManager.LoadWorkspace(path);
             Path = path;
